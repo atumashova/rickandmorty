@@ -12,3 +12,6 @@ protocol IDependencies {
 //    var episodesService: IEpisodesService { get }
 //    var favoritesCoreDataService: IFavoritesCoreDataSevice { get }
 }
+final class Dependencies: IDependencies {
+    
+}

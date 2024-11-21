@@ -62,9 +62,9 @@
 		95AA59552CEE7988002705F5 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				95AA59742CEFC1FE002705F5 /* Suppotring Files */,
 				95AA596D2CEFB819002705F5 /* Dependency */,
 				95AA596A2CEFB77B002705F5 /* Coordinator */,
-				95AA59562CEE7988002705F5 /* AppDelegate.swift */,
 				95AA595A2CEE7988002705F5 /* ViewController.swift */,
 				95AA595C2CEE7988002705F5 /* Main.storyboard */,
 				95AA595F2CEE798C002705F5 /* Assets.xcassets */,
@@ -90,6 +90,14 @@
 				95AA596E2CEFB843002705F5 /* Dependencies.swift */,
 			);
 			path = Dependency;
+			sourceTree = "<group>";
+		};
+		95AA59742CEFC1FE002705F5 /* Suppotring Files */ = {
+			isa = PBXGroup;
+			children = (
+				95AA59562CEE7988002705F5 /* AppDelegate.swift */,
+			);
+			path = "Suppotring Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
