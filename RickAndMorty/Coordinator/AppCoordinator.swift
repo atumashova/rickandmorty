@@ -28,7 +28,11 @@ final class AppCoordinator: Coordinator {
     }
     
     func showLaunchViewController() {
-        
+        let launchViewController = LaunchAssembly.configure(dependencies)
+        navigationController.show(launchViewController, sender: self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
+            self?.showMain()
+        }
     }
     
     func showMain() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */; };
 		95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59562CEE7988002705F5 /* AppDelegate.swift */; };
 		95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA595A2CEE7988002705F5 /* ViewController.swift */; };
 		95AA595E2CEE7988002705F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95AA595C2CEE7988002705F5 /* Main.storyboard */; };
@@ -16,9 +17,13 @@
 		95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA596E2CEFB843002705F5 /* Dependencies.swift */; };
 		95AA59712CEFB9D8002705F5 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59702CEFB9D8002705F5 /* AppCoordinator.swift */; };
 		95AA59732CEFBC42002705F5 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59722CEFBC42002705F5 /* MainCoordinator.swift */; };
+		95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59772CF08D65002705F5 /* ModuleContainer.swift */; };
+		95AA597B2CF08EFB002705F5 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA597A2CF08EFB002705F5 /* LaunchViewController.swift */; };
+		95AA597E2CF0B3C3002705F5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA597D2CF0B3C3002705F5 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAssembly.swift; sourceTree = "<group>"; };
 		95AA59532CEE7988002705F5 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AA59562CEE7988002705F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95AA595A2CEE7988002705F5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,6 +35,9 @@
 		95AA596E2CEFB843002705F5 /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		95AA59702CEFB9D8002705F5 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		95AA59722CEFBC42002705F5 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		95AA59772CF08D65002705F5 /* ModuleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleContainer.swift; sourceTree = "<group>"; };
+		95AA597A2CF08EFB002705F5 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		95AA597D2CF0B3C3002705F5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +70,8 @@
 		95AA59552CEE7988002705F5 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				95AA597C2CF0B2F8002705F5 /* Extension */,
+				95AA59752CF08B84002705F5 /* Module */,
 				95AA59742CEFC1FE002705F5 /* Suppotring Files */,
 				95AA596D2CEFB819002705F5 /* Dependency */,
 				95AA596A2CEFB77B002705F5 /* Coordinator */,
@@ -88,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				95AA596E2CEFB843002705F5 /* Dependencies.swift */,
+				95AA59772CF08D65002705F5 /* ModuleContainer.swift */,
 			);
 			path = Dependency;
 			sourceTree = "<group>";
@@ -98,6 +109,31 @@
 				95AA59562CEE7988002705F5 /* AppDelegate.swift */,
 			);
 			path = "Suppotring Files";
+			sourceTree = "<group>";
+		};
+		95AA59752CF08B84002705F5 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				95AA59792CF08EAE002705F5 /* Launch */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		95AA59792CF08EAE002705F5 /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				95AA597A2CF08EFB002705F5 /* LaunchViewController.swift */,
+				956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		95AA597C2CF0B2F8002705F5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,12 +207,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */,
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				95AA59732CEFBC42002705F5 /* MainCoordinator.swift in Sources */,
 				95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */,
 				95AA59712CEFB9D8002705F5 /* AppCoordinator.swift in Sources */,
 				95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */,
 				95AA596C2CEFB7AC002705F5 /* Coordinator.swift in Sources */,
+				95AA597B2CF08EFB002705F5 /* LaunchViewController.swift in Sources */,
+				956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */,
+				95AA597E2CF0B3C3002705F5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
