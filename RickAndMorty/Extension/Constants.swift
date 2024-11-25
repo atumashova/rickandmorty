@@ -10,4 +10,8 @@ import Foundation
 enum Images {
     static let logo = "logo"
     static let loadingElement = "loadingElement"
+    static let tabbarFavorites = "tabbarFavorites"
+    static let tabbarFavoritesSelected = "tabbarFavoritesSelected"
+    static let tabbarHome = "tabbarHome"
+    static let tabbarHomeSelected = "tabbarHomeSelected"
 }

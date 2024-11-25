@@ -24,7 +24,14 @@ final class MainCoordinator: Coordinator {
     }
     
     private func showTabBarViewController() {
-        
+        let tabbarVC = TabBarAssembly.configure(dependencies)
+        if let window = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first {
+            window.rootViewController = tabbarVC
+            UIView.transition(with: window, duration: 1.0, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+        } else {
+            tabbarVC.modalPresentationStyle = .fullScreen
+            navigationController.show(tabbarVC, sender: self)
+        }
     }
     
     func showCharacterViewController() {

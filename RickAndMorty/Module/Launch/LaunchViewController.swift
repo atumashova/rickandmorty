@@ -32,6 +32,7 @@ final class LaunchViewController: UIViewController {
         showAnimation()
     }
     private func setupUI() {
+        view.backgroundColor = .white
         view.addSubview(logoImageView)
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
