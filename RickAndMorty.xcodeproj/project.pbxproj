@@ -13,6 +13,12 @@
 		9565BF612CF25C7A00D1ECA6 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF602CF25C7A00D1ECA6 /* FavoritesViewController.swift */; };
 		9565BF632CF2623D00D1ECA6 /* FavoritesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF622CF2623D00D1ECA6 /* FavoritesAssembly.swift */; };
 		9565BF652CF2627600D1ECA6 /* EpisodesAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF642CF2627500D1ECA6 /* EpisodesAssembly.swift */; };
+		9565BF682CF9167D00D1ECA6 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF672CF9167D00D1ECA6 /* EpisodeCell.swift */; };
+		9565BF6B2CFB7AA900D1ECA6 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF6A2CFB7AA900D1ECA6 /* Episode.swift */; };
+		9565BF712CFB854100D1ECA6 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9565BF6E2CFB854100D1ECA6 /* Roboto-Regular.ttf */; };
+		9565BF722CFB854100D1ECA6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9565BF6F2CFB854100D1ECA6 /* Roboto-Bold.ttf */; };
+		9565BF732CFB854100D1ECA6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9565BF702CFB854100D1ECA6 /* Roboto-Medium.ttf */; };
+		9565BF752CFBA04B00D1ECA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF742CFBA04B00D1ECA6 /* Theme.swift */; };
 		956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */; };
 		95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59562CEE7988002705F5 /* AppDelegate.swift */; };
 		95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA595A2CEE7988002705F5 /* ViewController.swift */; };
@@ -35,6 +41,12 @@
 		9565BF602CF25C7A00D1ECA6 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		9565BF622CF2623D00D1ECA6 /* FavoritesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesAssembly.swift; sourceTree = "<group>"; };
 		9565BF642CF2627500D1ECA6 /* EpisodesAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesAssembly.swift; sourceTree = "<group>"; };
+		9565BF672CF9167D00D1ECA6 /* EpisodeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		9565BF6A2CFB7AA900D1ECA6 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		9565BF6E2CFB854100D1ECA6 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		9565BF6F2CFB854100D1ECA6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9565BF702CFB854100D1ECA6 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		9565BF742CFBA04B00D1ECA6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAssembly.swift; sourceTree = "<group>"; };
 		95AA59532CEE7988002705F5 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AA59562CEE7988002705F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +87,7 @@
 		9565BF5C2CF255FE00D1ECA6 /* Episodes */ = {
 			isa = PBXGroup;
 			children = (
+				9565BF662CF9166100D1ECA6 /* View */,
 				9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */,
 				9565BF642CF2627500D1ECA6 /* EpisodesAssembly.swift */,
 			);
@@ -88,6 +101,40 @@
 				9565BF622CF2623D00D1ECA6 /* FavoritesAssembly.swift */,
 			);
 			path = Favorites;
+			sourceTree = "<group>";
+		};
+		9565BF662CF9166100D1ECA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9565BF672CF9167D00D1ECA6 /* EpisodeCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9565BF692CFB7A9800D1ECA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9565BF6A2CFB7AA900D1ECA6 /* Episode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9565BF6C2CFB84F300D1ECA6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9565BF6D2CFB851000D1ECA6 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9565BF6D2CFB851000D1ECA6 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				9565BF6F2CFB854100D1ECA6 /* Roboto-Bold.ttf */,
+				9565BF702CFB854100D1ECA6 /* Roboto-Medium.ttf */,
+				9565BF6E2CFB854100D1ECA6 /* Roboto-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		95AA594A2CEE7987002705F5 = {
@@ -109,6 +156,7 @@
 		95AA59552CEE7988002705F5 /* RickAndMorty */ = {
 			isa = PBXGroup;
 			children = (
+				9565BF692CFB7A9800D1ECA6 /* Model */,
 				95AA597C2CF0B2F8002705F5 /* Extension */,
 				95AA59752CF08B84002705F5 /* Module */,
 				95AA59742CEFC1FE002705F5 /* Suppotring Files */,
@@ -145,6 +193,7 @@
 		95AA59742CEFC1FE002705F5 /* Suppotring Files */ = {
 			isa = PBXGroup;
 			children = (
+				9565BF6C2CFB84F300D1ECA6 /* Resources */,
 				95AA59562CEE7988002705F5 /* AppDelegate.swift */,
 			);
 			path = "Suppotring Files";
@@ -174,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
+				9565BF742CFBA04B00D1ECA6 /* Theme.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -238,6 +288,9 @@
 			files = (
 				95AA59632CEE798C002705F5 /* LaunchScreen.storyboard in Resources */,
 				95AA59602CEE798C002705F5 /* Assets.xcassets in Resources */,
+				9565BF732CFB854100D1ECA6 /* Roboto-Medium.ttf in Resources */,
+				9565BF722CFB854100D1ECA6 /* Roboto-Bold.ttf in Resources */,
+				9565BF712CFB854100D1ECA6 /* Roboto-Regular.ttf in Resources */,
 				95AA595E2CEE7988002705F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -249,17 +302,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9565BF682CF9167D00D1ECA6 /* EpisodeCell.swift in Sources */,
 				95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */,
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				9565BF612CF25C7A00D1ECA6 /* FavoritesViewController.swift in Sources */,
 				9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */,
 				95AA59732CEFBC42002705F5 /* MainCoordinator.swift in Sources */,
 				9565BF632CF2623D00D1ECA6 /* FavoritesAssembly.swift in Sources */,
+				9565BF6B2CFB7AA900D1ECA6 /* Episode.swift in Sources */,
 				95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */,
 				95AA59712CEFB9D8002705F5 /* AppCoordinator.swift in Sources */,
 				95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */,
 				9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */,
 				95AA596C2CEFB7AC002705F5 /* Coordinator.swift in Sources */,
+				9565BF752CFBA04B00D1ECA6 /* Theme.swift in Sources */,
 				95AA597B2CF08EFB002705F5 /* LaunchViewController.swift in Sources */,
 				956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */,
 				9565BF652CF2627600D1ECA6 /* EpisodesAssembly.swift in Sources */,
