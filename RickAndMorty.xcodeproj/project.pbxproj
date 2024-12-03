@@ -19,6 +19,8 @@
 		9565BF722CFB854100D1ECA6 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9565BF6F2CFB854100D1ECA6 /* Roboto-Bold.ttf */; };
 		9565BF732CFB854100D1ECA6 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9565BF702CFB854100D1ECA6 /* Roboto-Medium.ttf */; };
 		9565BF752CFBA04B00D1ECA6 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF742CFBA04B00D1ECA6 /* Theme.swift */; };
+		9565BF772CFCF2FD00D1ECA6 /* EpisodeHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF762CFCF2FD00D1ECA6 /* EpisodeHeader.swift */; };
+		9565BF792CFF9C5400D1ECA6 /* EpisodeFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF782CFF9C5400D1ECA6 /* EpisodeFilterView.swift */; };
 		956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */; };
 		95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59562CEE7988002705F5 /* AppDelegate.swift */; };
 		95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA595A2CEE7988002705F5 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		9565BF6F2CFB854100D1ECA6 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		9565BF702CFB854100D1ECA6 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		9565BF742CFBA04B00D1ECA6 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		9565BF762CFCF2FD00D1ECA6 /* EpisodeHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeHeader.swift; sourceTree = "<group>"; };
+		9565BF782CFF9C5400D1ECA6 /* EpisodeFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeFilterView.swift; sourceTree = "<group>"; };
 		956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAssembly.swift; sourceTree = "<group>"; };
 		95AA59532CEE7988002705F5 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AA59562CEE7988002705F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +111,8 @@
 			isa = PBXGroup;
 			children = (
 				9565BF672CF9167D00D1ECA6 /* EpisodeCell.swift */,
+				9565BF762CFCF2FD00D1ECA6 /* EpisodeHeader.swift */,
+				9565BF782CFF9C5400D1ECA6 /* EpisodeFilterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -317,7 +323,9 @@
 				95AA596C2CEFB7AC002705F5 /* Coordinator.swift in Sources */,
 				9565BF752CFBA04B00D1ECA6 /* Theme.swift in Sources */,
 				95AA597B2CF08EFB002705F5 /* LaunchViewController.swift in Sources */,
+				9565BF792CFF9C5400D1ECA6 /* EpisodeFilterView.swift in Sources */,
 				956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */,
+				9565BF772CFCF2FD00D1ECA6 /* EpisodeHeader.swift in Sources */,
 				9565BF652CF2627600D1ECA6 /* EpisodesAssembly.swift in Sources */,
 				9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */,
 				95AA597E2CF0B3C3002705F5 /* Constants.swift in Sources */,

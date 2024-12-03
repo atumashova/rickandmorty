@@ -13,13 +13,26 @@ final class EpisodesViewController: UIViewController {
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
     lazy var episodesCollectionView: UICollectionView = {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize(width: self.view.frame.width - 44, height: 357)
-        layout.minimumLineSpacing = 55
-        layout.sectionInset = UIEdgeInsets(top: 30, left: 22, bottom: 0, right: 22)
-        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
+        collectionView.register(EpisodeHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EpisodeHeaderView.reuseIdentifier)
         collectionView.register(EpisodeCell.self, forCellWithReuseIdentifier: EpisodeCell.reuseIdentifier)
         return collectionView
+    }()
+    lazy var collectionViewLayout: UICollectionViewLayout = {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(357))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 55
+        section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 22, bottom: 20, trailing: 22)
+        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerFooterSize,
+            elementKind:  UICollectionView.elementKindSectionHeader, alignment: .top)
+        section.boundarySupplementaryItems = [sectionHeader]
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +65,15 @@ extension EpisodesViewController {
             cell.configure(episode: episode)
             return cell
         })
+        dataSource?.supplementaryViewProvider = { (
+            collectionView: UICollectionView,
+            kind: String,
+            indexPath: IndexPath) -> UICollectionReusableView? in
+            guard let header =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EpisodeHeaderView.reuseIdentifier, for: indexPath) as? EpisodeHeaderView else {
+                return nil
+            }
+            return header
+        }
     }
     private func updateDataSource(_ data: [EpisodeModel]) {
         var snapshot = EpisodeSnapshot()
