@@ -14,4 +14,7 @@ enum Images {
     static let tabbarFavoritesSelected = "tabbarFavoritesSelected"
     static let tabbarHome = "tabbarHome"
     static let tabbarHomeSelected = "tabbarHomeSelected"
+    static let episodeIcon = "episodeIcon"
+    static let favoriteIcon = "favoriteIcon"
+    static let favoriteSelectedIcon = "favoriteSelectedIcon"
 }
