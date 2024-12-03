@@ -12,7 +12,8 @@ final class EpisodesViewController: UIViewController {
     private typealias EpisodeDataSource = UICollectionViewDiffableDataSource<Section, EpisodeModel>
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
-    lazy var episodesCollectionView: UICollectionView = {
+    
+    private lazy var episodesCollectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout.init()
         layout.itemSize = CGSize(width: self.view.frame.width - 44, height: 357)
         layout.minimumLineSpacing = 55
@@ -21,10 +22,12 @@ final class EpisodesViewController: UIViewController {
         collectionView.register(EpisodeCell.self, forCellWithReuseIdentifier: EpisodeCell.reuseIdentifier)
         return collectionView
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
+    
     private func setupUI() {
         view.backgroundColor = .white
         makeDataSouce()
@@ -41,7 +44,7 @@ final class EpisodesViewController: UIViewController {
     }
 }
 // MARK: - UITableViewDataSource
-extension EpisodesViewController {
+private extension EpisodesViewController {
     private enum Section {
         case main
     }
