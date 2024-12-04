@@ -47,7 +47,10 @@ extension ModuleContainer {
 // MARK: - Episodes
 extension ModuleContainer {
     func getEpisodesView() -> UIViewController {
-        return EpisodesViewController()
+        let view = EpisodesViewController()
+        let viewModel = EpisodesViewModel(dependencies)
+        view.viewModel = viewModel
+        return view
     }
 }
 

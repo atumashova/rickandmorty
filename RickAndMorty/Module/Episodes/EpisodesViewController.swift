@@ -26,7 +26,7 @@ final class EpisodesViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 55
         section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 22, bottom: 20, trailing: 22)
-        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(300))
+        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(316))
         let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: headerFooterSize,
             elementKind:  UICollectionView.elementKindSectionHeader, alignment: .top)
@@ -34,15 +34,23 @@ final class EpisodesViewController: UIViewController {
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }()
+    var viewModel: EpisodesViewModelDelegate? {
+        didSet {
+            viewModel?.updateEpisodesHandler = { [weak self] episodes in
+                self?.updateDataSource(episodes)
+                self?.episodesCollectionView.reloadData()
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        viewModel?.getEpisodes()
     }
     
     private func setupUI() {
         view.backgroundColor = .white
         makeDataSouce()
-        updateDataSource([EpisodeModel(id: 0, name: "Episode", episode: "vsdvd", characters: ["character1"]), EpisodeModel(id: 1, name: "Episode 1", episode: "vsdd", characters: ["character2"])])
         view.addSubview(episodesCollectionView)
         episodesCollectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([

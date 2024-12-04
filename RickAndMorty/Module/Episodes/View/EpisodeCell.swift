@@ -83,7 +83,7 @@ final class EpisodeCell: UICollectionViewCell {
     }()
     
     func configure(episode: EpisodeModel) {
-        episodeLabel.text = episode.name
+        episodeLabel.text = "\(episode.name) | \(episode.episode)" 
         characterLabel.text = "Rick Sanchez"
     }
     
@@ -130,9 +130,11 @@ final class EpisodeCell: UICollectionViewCell {
         stackEpisodeView.axis = .horizontal
         stackEpisodeView.spacing = 10
         episodeView.addSubview(stackEpisodeView)
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
         stackEpisodeView.translatesAutoresizingMaskIntoConstraints = false
         episodeImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            favoriteButton.widthAnchor.constraint(equalToConstant: 40),
             episodeImageView.widthAnchor.constraint(equalToConstant: 33),
             stackEpisodeView.topAnchor.constraint(equalTo: episodeView.topAnchor),
             stackEpisodeView.bottomAnchor.constraint(equalTo: episodeView.bottomAnchor),
