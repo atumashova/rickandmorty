@@ -40,6 +40,12 @@ final class EpisodesViewController: UIViewController {
                 self?.updateDataSource(episodes)
                 self?.episodesCollectionView.reloadData()
             }
+            viewModel?.updateCharacterHandler = { [weak self] (episodeIndex, character) in
+                guard let cell = self?.episodesCollectionView.cellForItem(at: IndexPath(row: episodeIndex, section: 0)) as? EpisodeCell else {
+                    return
+                }
+                cell.configure(character: character)
+            }
         }
     }
     override func viewDidLoad() {
@@ -72,6 +78,7 @@ private extension EpisodesViewController {
             guard let cell = self.episodesCollectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCell.reuseIdentifier, for: indexPath) as? EpisodeCell
             else { return UICollectionViewCell() }
             cell.configure(episode: episode)
+            self.viewModel?.getCharacter(episode: episode)
             return cell
         })
         dataSource?.supplementaryViewProvider = { (

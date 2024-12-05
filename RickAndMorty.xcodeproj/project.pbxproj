@@ -27,6 +27,8 @@
 		9565BF832CFFBC0600D1ECA6 /* Codable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF822CFFBC0600D1ECA6 /* Codable+Ext.swift */; };
 		9565BF852D01063900D1ECA6 /* ResponseEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF842D01063900D1ECA6 /* ResponseEpisode.swift */; };
 		9565BF872D01064F00D1ECA6 /* ResponseInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF862D01064F00D1ECA6 /* ResponseInfo.swift */; };
+		9565BF8A2D0237A400D1ECA6 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF892D0237A400D1ECA6 /* Character.swift */; };
+		9565BF8C2D023E7C00D1ECA6 /* UIImageView+Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF8B2D023E7C00D1ECA6 /* UIImageView+Download.swift */; };
 		956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */; };
 		95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA59562CEE7988002705F5 /* AppDelegate.swift */; };
 		95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA595A2CEE7988002705F5 /* ViewController.swift */; };
@@ -63,6 +65,8 @@
 		9565BF822CFFBC0600D1ECA6 /* Codable+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Ext.swift"; sourceTree = "<group>"; };
 		9565BF842D01063900D1ECA6 /* ResponseEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseEpisode.swift; sourceTree = "<group>"; };
 		9565BF862D01064F00D1ECA6 /* ResponseInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseInfo.swift; sourceTree = "<group>"; };
+		9565BF892D0237A400D1ECA6 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
+		9565BF8B2D023E7C00D1ECA6 /* UIImageView+Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Download.swift"; sourceTree = "<group>"; };
 		956EC4892CF1D0B40082AD94 /* LaunchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAssembly.swift; sourceTree = "<group>"; };
 		95AA59532CEE7988002705F5 /* RickAndMorty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RickAndMorty.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95AA59562CEE7988002705F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				9565BF6A2CFB7AA900D1ECA6 /* Episode.swift */,
 				9565BF842D01063900D1ECA6 /* ResponseEpisode.swift */,
 				9565BF862D01064F00D1ECA6 /* ResponseInfo.swift */,
+				9565BF892D0237A400D1ECA6 /* Character.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -264,6 +269,7 @@
 				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
 				9565BF742CFBA04B00D1ECA6 /* Theme.swift */,
 				9565BF822CFFBC0600D1ECA6 /* Codable+Ext.swift */,
+				9565BF8B2D023E7C00D1ECA6 /* UIImageView+Download.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -348,6 +354,7 @@
 				9565BF812CFFAFD400D1ECA6 /* HTTPClient.swift in Sources */,
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				9565BF872D01064F00D1ECA6 /* ResponseInfo.swift in Sources */,
+				9565BF8C2D023E7C00D1ECA6 /* UIImageView+Download.swift in Sources */,
 				9565BF612CF25C7A00D1ECA6 /* FavoritesViewController.swift in Sources */,
 				9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */,
 				95AA59732CEFBC42002705F5 /* MainCoordinator.swift in Sources */,
@@ -365,6 +372,7 @@
 				9565BF792CFF9C5400D1ECA6 /* EpisodeFilterView.swift in Sources */,
 				956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */,
 				9565BF772CFCF2FD00D1ECA6 /* EpisodeHeader.swift in Sources */,
+				9565BF8A2D0237A400D1ECA6 /* Character.swift in Sources */,
 				9565BF652CF2627600D1ECA6 /* EpisodesAssembly.swift in Sources */,
 				9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */,
 				9565BF832CFFBC0600D1ECA6 /* Codable+Ext.swift in Sources */,

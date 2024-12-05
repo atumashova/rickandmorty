@@ -47,6 +47,7 @@ final class EpisodeCell: UICollectionViewCell {
     
     private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 4
         imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return imageView
@@ -83,8 +84,11 @@ final class EpisodeCell: UICollectionViewCell {
     }()
     
     func configure(episode: EpisodeModel) {
-        episodeLabel.text = "\(episode.name) | \(episode.episode)" 
-        characterLabel.text = "Rick Sanchez"
+        episodeLabel.text = "\(episode.name) | \(episode.episode)"
+    }
+    func configure(character: CharacterModel) {
+        characterLabel.text = character.name
+        characterImageView.downloaded(from: character.image, contentMode: .scaleAspectFill)
     }
     
     @objc func tapFavoriteButton(sender: UIButton) {
