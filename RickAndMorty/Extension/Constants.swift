@@ -16,5 +16,10 @@ enum Images {
     static let tabbarHomeSelected = "tabbarHomeSelected"
     static let episodeIcon = "episodeIcon"
     static let favoriteIcon = "favoriteIcon"
+    static let filterIcon = "filterIcon"
     static let favoriteSelectedIcon = "favoriteSelectedIcon"
+}
+enum Constants {
+    static let filterTitle = "ADVANCED FILTERS"
+    static let searchEpisodePlaceholder = "Name or episode (ex.S01E01)..."
 }

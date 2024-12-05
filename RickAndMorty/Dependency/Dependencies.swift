@@ -9,9 +9,12 @@ import Foundation
 
 protocol IDependencies {
     var moduleContainer: IModuleContainer { get }
-//    var episodesService: IEpisodesService { get }
+    var episodesService: IEpisodesService { get }
+    var networkService: IHTTPClient { get }
 //    var favoritesCoreDataService: IFavoritesCoreDataSevice { get }
 }
 final class Dependencies: IDependencies {
+    lazy var networkService: IHTTPClient = HTTPClient()
+    lazy var episodesService: IEpisodesService = EpisodesService(self)
     lazy var moduleContainer: IModuleContainer = ModuleContainer(self)
 }
