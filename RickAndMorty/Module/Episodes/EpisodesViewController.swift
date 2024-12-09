@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 final class EpisodesViewController: UIViewController {
+    private var searchTask: DispatchWorkItem?
     private typealias EpisodeDataSource = UICollectionViewDiffableDataSource<Section, EpisodeModel>
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
@@ -38,7 +39,10 @@ final class EpisodesViewController: UIViewController {
         didSet {
             viewModel?.updateEpisodesHandler = { [weak self] episodes in
                 self?.updateDataSource(episodes)
-                self?.episodesCollectionView.reloadData()
+                guard let header = self?.episodesCollectionView.supplementaryView(forElementKind: UICollectionView.elementKindSectionHeader, at: IndexPath(row: 0, section: 0)) as? EpisodeHeaderView else {
+                    return
+                }
+                header.search = self?.viewModel?.searchString
             }
             viewModel?.updateCharacterHandler = { [weak self] (episodeIndex, character) in
                 guard let cell = self?.episodesCollectionView.cellForItem(at: IndexPath(row: episodeIndex, section: 0)) as? EpisodeCell else {
@@ -51,7 +55,11 @@ final class EpisodesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        viewModel?.getEpisodes()
+        updateInfo()
+    }
+    
+    private func updateInfo() {
+        viewModel?.getEpisodes(nextPage: false)
     }
     
     private func setupUI() {
@@ -65,7 +73,20 @@ final class EpisodesViewController: UIViewController {
             episodesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             episodesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
+        episodesCollectionView.delegate = self
         episodesCollectionView.dataSource = dataSource
+    }
+}
+// MARK: - UICollectionViewDelegate
+extension EpisodesViewController: UICollectionViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let threshold: CGFloat = 100
+        let contentHeight = scrollView.contentSize.height
+        let offsetY = scrollView.contentOffset.y
+        let height = scrollView.frame.size.height
+        if offsetY > contentHeight - height - threshold {
+            viewModel?.getEpisodes(nextPage: true)
+        }
     }
 }
 // MARK: - UITableViewDataSource
@@ -88,6 +109,8 @@ private extension EpisodesViewController {
             guard let header =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: EpisodeHeaderView.reuseIdentifier, for: indexPath) as? EpisodeHeaderView else {
                 return nil
             }
+            header.search = self.viewModel?.searchString
+            header.delegate = self
             return header
         }
     }
@@ -96,5 +119,22 @@ private extension EpisodesViewController {
         snapshot.appendSections([Section.main])
         snapshot.appendItems(data)
         dataSource?.apply(snapshot, animatingDifferences: false)
+    }
+}
+// MARK: - Episode header
+extension EpisodesViewController: EpisodeHeaderDelegate {
+    func changeSearchTextField(text: String?) {
+        guard let searchText = text else { return }
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                DispatchQueue.main.async {
+                    self?.viewModel?.searchString = searchText
+                    self?.updateInfo()
+                }
+            }
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
     }
 }

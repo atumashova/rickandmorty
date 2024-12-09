@@ -8,10 +8,24 @@
 import Foundation
 import UIKit
 
+protocol EpisodeHeaderDelegate {
+    func changeSearchTextField(text: String?)
+}
+
 class EpisodeHeaderView: UICollectionReusableView {
     
     static let reuseIdentifier = "EpisodeHeaderView"
-    
+    var delegate: EpisodeHeaderDelegate?
+    var search: String? {
+        didSet {
+            searchField.text = search
+            if let search = search {
+                DispatchQueue.main.async {
+                    self.searchField.becomeFirstResponder()
+                }
+            }
+        }
+    }
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -45,6 +59,7 @@ class EpisodeHeaderView: UICollectionReusableView {
     }()
     
     private func setupUI() {
+        searchField.addTarget(self, action: #selector(searchTextFildValueChanged), for: .editingChanged)
         let stackView = UIStackView(arrangedSubviews: [logoImageView, searchField, filterButton])
         stackView.axis = .vertical
         stackView.spacing = 12
@@ -59,5 +74,8 @@ class EpisodeHeaderView: UICollectionReusableView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor)
         ])
+    }
+    @objc func searchTextFildValueChanged(textField: UITextField) {
+        delegate?.changeSearchTextField(text: textField.text)
     }
 }

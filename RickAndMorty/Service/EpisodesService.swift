@@ -7,11 +7,11 @@
 
 import Foundation
 
-typealias EpisodesResult = Result<[EpisodeModel], Error>
+typealias EpisodesResult = Result<([EpisodeModel], ResponseInfo), Error>
 typealias CharacterResult = Result<CharacterModel, Error>
 
 protocol IEpisodesService {
-    func getEpisodes(completion: @escaping (EpisodesResult) -> Void)
+    func getEpisodes(urlStr: String, completion: @escaping (EpisodesResult) -> Void)
     func getCharacter(url: String, completion: @escaping (CharacterResult) -> Void)
 }
 
@@ -44,8 +44,8 @@ struct EpisodesService: IEpisodesService {
         }
     }
     
-    func getEpisodes(completion: @escaping (EpisodesResult) -> Void) {
-        guard let url = URL(string: "https://rickandmortyapi.com/api/episode") else {return}
+    func getEpisodes(urlStr: String, completion: @escaping (EpisodesResult) -> Void) {
+        guard let url = URL(string: urlStr) else {return}
         networkService.request(url: url) { result in
             let returnedResult: EpisodesResult
             defer {
@@ -57,7 +57,8 @@ struct EpisodesService: IEpisodesService {
             case .success(let data):
                 do {
                     let model = try data.decoded() as ResponseEpisode
-                    returnedResult = .success(model.results.map({EpisodeModel(id: $0.id, name: $0.name, episode: $0.episode, character: $0.characters.randomElement())}))
+                    let episodes = model.results.map({EpisodeModel(id: $0.id, name: $0.name, episode: $0.episode, character: $0.characters.randomElement())})
+                    returnedResult = .success((episodes, model.info))
                 } catch let error {
                     returnedResult = .failure(error)
                 }
