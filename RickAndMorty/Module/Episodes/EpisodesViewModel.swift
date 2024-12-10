@@ -13,6 +13,7 @@ protocol EpisodesViewModelDelegate: AnyObject {
     var updateCharacterHandler: ((_ episodeIndex: Int, _ character: CharacterModel) -> Void)? { get set }
     func getEpisodes(nextPage: Bool)
     func getCharacter(episode: EpisodeModel)
+    func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void)
 }
 
 final class EpisodesViewModel: EpisodesViewModelDelegate {
@@ -23,10 +24,27 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
     private var isLoadingEpisodes: Bool = false
     private var episodesPageInfo: ResponseInfo?
     private var episodesService: IEpisodesService?
+    private var searchTask: DispatchWorkItem?
     
     init(_ dependencies: IDependencies) {
         episodesService = dependencies.episodesService
     }
+    
+    func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void) {
+        guard let searchText = search else { return }
+        self.searchTask?.cancel()
+        let task = DispatchWorkItem { [weak self] in
+            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
+                DispatchQueue.main.async {
+                    self?.searchString = searchText
+                    updateSearchRequest()
+                }
+            }
+        }
+        self.searchTask = task
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
+    }
+    
     func getCharacter(episode: EpisodeModel) {
         guard let index = episodes.firstIndex(of: episode) else {return}
         guard let character = episode.character else {return}
@@ -39,6 +57,7 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
             }
         })
     }
+    
     func getEpisodes(nextPage: Bool) {
         guard !isLoadingEpisodes else {
             return
@@ -81,6 +100,7 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
             }
         })
     }
+    
     private func isEpisodeSearchPattern(string: String) -> Bool {
         let pattern = "^(S(0[1-5])E(0[1-9]|10))|S(0[1-5])|E(0[1-9]|10)$"
         let regex = try! NSRegularExpression(pattern: pattern, options: [])

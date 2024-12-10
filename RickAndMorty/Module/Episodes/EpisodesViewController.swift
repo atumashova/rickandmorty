@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 final class EpisodesViewController: UIViewController {
-    private var searchTask: DispatchWorkItem?
     private typealias EpisodeDataSource = UICollectionViewDiffableDataSource<Section, EpisodeModel>
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
@@ -124,17 +123,8 @@ private extension EpisodesViewController {
 // MARK: - Episode header
 extension EpisodesViewController: EpisodeHeaderDelegate {
     func changeSearchTextField(text: String?) {
-        guard let searchText = text else { return }
-        self.searchTask?.cancel()
-        let task = DispatchWorkItem { [weak self] in
-            DispatchQueue.global(qos: .userInteractive).async { [weak self] in
-                DispatchQueue.main.async {
-                    self?.viewModel?.searchString = searchText
-                    self?.updateInfo()
-                }
-            }
+        viewModel?.changeSearchValue(text) { [weak self] in
+            self?.updateInfo()
         }
-        self.searchTask = task
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
     }
 }
