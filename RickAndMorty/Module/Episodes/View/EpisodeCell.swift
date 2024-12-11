@@ -146,4 +146,10 @@ final class EpisodeCell: UICollectionViewCell {
             stackEpisodeView.trailingAnchor.constraint(equalTo: episodeView.trailingAnchor, constant: -20)
         ])
     }
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        episodeLabel.text = nil
+        characterLabel.text = nil
+        characterImageView.image = nil
+    }
 }
