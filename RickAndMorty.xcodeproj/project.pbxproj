@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		01BD17422D0A360800DC1E94 /* ImageDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */; };
 		9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF582CF2529E00D1ECA6 /* TabBarController.swift */; };
 		9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */; };
 		9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */; };
@@ -45,6 +46,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadError.swift; sourceTree = "<group>"; };
 		9565BF582CF2529E00D1ECA6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		01BD17402D0A35EF00DC1E94 /* Errors */ = {
+			isa = PBXGroup;
+			children = (
+				01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */,
+			);
+			path = Errors;
+			sourceTree = "<group>";
+		};
 		9565BF572CF251E400D1ECA6 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +276,7 @@
 		95AA597C2CF0B2F8002705F5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				01BD17402D0A35EF00DC1E94 /* Errors */,
 				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
 				9565BF742CFBA04B00D1ECA6 /* Theme.swift */,
 				9565BF822CFFBC0600D1ECA6 /* Codable+Ext.swift */,
@@ -376,6 +387,7 @@
 				9565BF652CF2627600D1ECA6 /* EpisodesAssembly.swift in Sources */,
 				9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */,
 				9565BF832CFFBC0600D1ECA6 /* Codable+Ext.swift in Sources */,
+				01BD17422D0A360800DC1E94 /* ImageDownloadError.swift in Sources */,
 				95AA597E2CF0B3C3002705F5 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

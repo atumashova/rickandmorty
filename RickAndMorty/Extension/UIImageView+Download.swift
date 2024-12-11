@@ -7,15 +7,6 @@
 
 import Foundation
 import UIKit
-// Типы ошибок при скачивании фото
-enum ImageDownloadError: Error {
-    case invalidURL
-    case networkError(Error)
-    case badResponse
-    case invalidMimeType(String)
-    case imageDataCreationError
-    case unknown
-}
 
 extension UIImageView {
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFit, completion: @escaping (Result<UIImage, ImageDownloadError>) -> Void) {
