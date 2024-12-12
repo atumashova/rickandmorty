@@ -13,3 +13,12 @@ struct EpisodeModel: Decodable, Hashable {
     var episode: String
     var character: String?
 }
+// MARK: COREDATA
+extension EpisodeModel {
+    init(_ entity: EpisodeEntity) {
+        id = Int(entity.id)
+        name = entity.name ?? ""
+        episode = entity.episode ?? ""
+        character = entity.character ?? ""
+    }
+}

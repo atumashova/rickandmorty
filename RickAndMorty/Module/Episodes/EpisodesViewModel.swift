@@ -13,6 +13,8 @@ protocol EpisodesViewModelDelegate: AnyObject {
     var updateCharacterHandler: ((_ episodeIndex: Int, _ character: CharacterModel) -> Void)? { get set }
     func getEpisodes(nextPage: Bool)
     func getCharacter(episode: EpisodeModel)
+    func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool
+    func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool)
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void)
 }
 
@@ -20,14 +22,18 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
     var searchString: String?
     var updateCharacterHandler: ((Int, CharacterModel) -> Void)?
     var updateEpisodesHandler: (([EpisodeModel]) -> Void)?
+    private var favoriteEpisodes: [EpisodeModel] = []
     private var episodes: [EpisodeModel] = []
     private var isLoadingEpisodes: Bool = false
     private var episodesPageInfo: ResponseInfo?
     private var episodesService: IEpisodesService?
+    private let coreDataService: IFavoritesCoreDataSevice
     private var searchTask: DispatchWorkItem?
     
     init(_ dependencies: IDependencies) {
+        coreDataService = dependencies.favoritesCoreDataService
         episodesService = dependencies.episodesService
+        getFavoriteEpisodes()
     }
     
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void) {
@@ -56,6 +62,22 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool {
+        favoriteEpisodes.contains(where: {$0.id == episode.id})
+    }
+    
+    func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool) {
+        if isFavorite {
+            // удалить из избранных
+            favoriteEpisodes.removeAll(where: {$0.id == episode.id})
+            coreDataService.update(episodes: favoriteEpisodes)
+        } else {
+            // добавить в избранное
+            favoriteEpisodes.append(episode)
+            coreDataService.update(episodes: favoriteEpisodes)
+        }
     }
     
     func getEpisodes(nextPage: Bool) {
@@ -99,6 +121,18 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
                 print(error.localizedDescription)
             }
         })
+    }
+    
+    private func getFavoriteEpisodes() {
+        coreDataService.fetch { result in
+            switch result {
+            case .success(let episodes):
+                self.favoriteEpisodes = episodes ?? []
+            case .failure(let error):
+                self.favoriteEpisodes = []
+            }
+        }
+        
     }
     
     private func isEpisodeSearchPattern(string: String) -> Bool {

@@ -97,7 +97,8 @@ private extension EpisodesViewController {
         dataSource = EpisodeDataSource(collectionView: episodesCollectionView, cellProvider: { collectionView, indexPath, episode in
             guard let cell = self.episodesCollectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCell.reuseIdentifier, for: indexPath) as? EpisodeCell
             else { return UICollectionViewCell() }
-            cell.configure(episode: episode)
+            cell.delegate = self
+            cell.configure(episode: episode, isFavorite: self.viewModel?.isFavoriteEpisode(episode) ?? false)
             self.viewModel?.getCharacter(episode: episode)
             return cell
         })
@@ -120,6 +121,13 @@ private extension EpisodesViewController {
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
+// MARK: - Episode cell
+extension EpisodesViewController: EpisodeCellDelegate {
+    func updateFavorite(isSelected: Bool, episode: EpisodeModel) {
+        viewModel?.changeEpisodeFavorite(episode: episode, isFavorite: isSelected)
+    }
+}
+
 // MARK: - Episode header
 extension EpisodesViewController: EpisodeHeaderDelegate {
     func changeSearchTextField(text: String?) {

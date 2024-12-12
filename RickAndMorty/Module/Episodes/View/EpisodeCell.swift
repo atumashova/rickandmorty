@@ -8,7 +8,13 @@
 import Foundation
 import UIKit
 
+protocol EpisodeCellDelegate {
+    func updateFavorite(isSelected: Bool, episode: EpisodeModel)
+}
+
 final class EpisodeCell: UICollectionViewCell {
+    var delegate: EpisodeCellDelegate?
+    private var episode: EpisodeModel?
     static let reuseIdentifier = "EpisodeCell"
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -83,15 +89,20 @@ final class EpisodeCell: UICollectionViewCell {
         return button
     }()
     
-    func configure(episode: EpisodeModel) {
+    func configure(episode: EpisodeModel, isFavorite: Bool) {
+        self.episode = episode
+        favoriteButton.isSelected = isFavorite
         episodeLabel.text = "\(episode.name) | \(episode.episode)"
     }
+    
     func configure(character: CharacterModel) {
         characterLabel.text = character.name
         characterImageView.downloaded(from: character.image, contentMode: .scaleAspectFill)
     }
     
     @objc func tapFavoriteButton(sender: UIButton) {
+        guard let episode = self.episode else {return}
+        delegate?.updateFavorite(isSelected: sender.isSelected, episode: episode)
         sender.isSelected = !sender.isSelected
     }
     

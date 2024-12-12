@@ -23,3 +23,7 @@ enum Constants {
     static let filterTitle = "ADVANCED FILTERS"
     static let searchEpisodePlaceholder = "Name or episode (ex.S01E01)..."
 }
+enum CoreDataConstant {
+    static let episodeContainerName = "EpisodeContainer"
+    static let episodeEntityName = "EpisodeEntity"
+}

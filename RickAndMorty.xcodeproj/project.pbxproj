@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		01BD17422D0A360800DC1E94 /* ImageDownloadError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */; };
+		01BD17442D0A386900DC1E94 /* FavoritesCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17432D0A386600DC1E94 /* FavoritesCoreDataService.swift */; };
+		01BD17472D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17452D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld */; };
+		01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */; };
 		9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF582CF2529E00D1ECA6 /* TabBarController.swift */; };
 		9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */; };
 		9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloadError.swift; sourceTree = "<group>"; };
+		01BD17432D0A386600DC1E94 /* FavoritesCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoreDataService.swift; sourceTree = "<group>"; };
+		01BD17462D0A392900DC1E94 /* EpisodeContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EpisodeContainer.xcdatamodel; sourceTree = "<group>"; };
+		01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEntity.swift; sourceTree = "<group>"; };
 		9565BF582CF2529E00D1ECA6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -147,10 +153,12 @@
 		9565BF692CFB7A9800D1ECA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */,
 				9565BF6A2CFB7AA900D1ECA6 /* Episode.swift */,
 				9565BF842D01063900D1ECA6 /* ResponseEpisode.swift */,
 				9565BF862D01064F00D1ECA6 /* ResponseInfo.swift */,
 				9565BF892D0237A400D1ECA6 /* Character.swift */,
+				01BD17452D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -176,6 +184,7 @@
 		9565BF7C2CFFAEE500D1ECA6 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				01BD17432D0A386600DC1E94 /* FavoritesCoreDataService.swift */,
 				9565BF7D2CFFAEFD00D1ECA6 /* EpisodesService.swift */,
 			);
 			path = Service;
@@ -360,8 +369,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9565BF852D01063900D1ECA6 /* ResponseEpisode.swift in Sources */,
+				01BD17472D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld in Sources */,
 				9565BF682CF9167D00D1ECA6 /* EpisodeCell.swift in Sources */,
 				95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */,
+				01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */,
 				9565BF812CFFAFD400D1ECA6 /* HTTPClient.swift in Sources */,
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				9565BF872D01064F00D1ECA6 /* ResponseInfo.swift in Sources */,
@@ -374,6 +385,7 @@
 				95AA595B2CEE7988002705F5 /* ViewController.swift in Sources */,
 				9565BF7E2CFFAEFD00D1ECA6 /* EpisodesService.swift in Sources */,
 				95AA59712CEFB9D8002705F5 /* AppCoordinator.swift in Sources */,
+				01BD17442D0A386900DC1E94 /* FavoritesCoreDataService.swift in Sources */,
 				95AA59572CEE7988002705F5 /* AppDelegate.swift in Sources */,
 				9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */,
 				9565BF7B2CFFADC300D1ECA6 /* EpisodesViewModel.swift in Sources */,
@@ -606,6 +618,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		01BD17452D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				01BD17462D0A392900DC1E94 /* EpisodeContainer.xcdatamodel */,
+			);
+			currentVersion = 01BD17462D0A392900DC1E94 /* EpisodeContainer.xcdatamodel */;
+			path = EpisodeContainer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 95AA594B2CEE7987002705F5 /* Project object */;
 }
