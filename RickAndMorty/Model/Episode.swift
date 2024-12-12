@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct EpisodeModel: Hashable {
+struct EpisodeModel: Decodable, Hashable {
     let id: Int
     var name: String
     var episode: String
-    var characters: [String]
+    var character: String?
 }
