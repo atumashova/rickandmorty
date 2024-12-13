@@ -68,7 +68,7 @@ class EpisodeHeaderView: UICollectionReusableView {
         NSLayoutConstraint.activate([
             filterButton.heightAnchor.constraint(equalToConstant: 56),
             searchField.heightAnchor.constraint(equalToConstant: 56),
-            logoImageView.heightAnchor.constraint(equalToConstant: 180),
+            logoImageView.heightAnchor.constraint(equalToConstant: 125),
             stackView.topAnchor.constraint(equalTo: self.topAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
