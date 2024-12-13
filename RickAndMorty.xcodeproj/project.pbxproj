@@ -11,6 +11,8 @@
 		01BD17442D0A386900DC1E94 /* FavoritesCoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17432D0A386600DC1E94 /* FavoritesCoreDataService.swift */; };
 		01BD17472D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17452D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld */; };
 		01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */; };
+		01BD174B2D0CCE8600DC1E94 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD174A2D0CCE7A00DC1E94 /* FavoritesViewModel.swift */; };
+		01BD174D2D0CD57900DC1E94 /* AppDelegate+UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */; };
 		9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF582CF2529E00D1ECA6 /* TabBarController.swift */; };
 		9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */; };
 		9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */; };
@@ -53,6 +55,8 @@
 		01BD17432D0A386600DC1E94 /* FavoritesCoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesCoreDataService.swift; sourceTree = "<group>"; };
 		01BD17462D0A392900DC1E94 /* EpisodeContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EpisodeContainer.xcdatamodel; sourceTree = "<group>"; };
 		01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEntity.swift; sourceTree = "<group>"; };
+		01BD174A2D0CCE7A00DC1E94 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UINavigationBar.swift"; sourceTree = "<group>"; };
 		9565BF582CF2529E00D1ECA6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +138,7 @@
 		9565BF5D2CF2561200D1ECA6 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
+				01BD174A2D0CCE7A00DC1E94 /* FavoritesViewModel.swift */,
 				9565BF602CF25C7A00D1ECA6 /* FavoritesViewController.swift */,
 				9565BF622CF2623D00D1ECA6 /* FavoritesAssembly.swift */,
 			);
@@ -285,6 +290,7 @@
 		95AA597C2CF0B2F8002705F5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */,
 				01BD17402D0A35EF00DC1E94 /* Errors */,
 				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
 				9565BF742CFBA04B00D1ECA6 /* Theme.swift */,
@@ -374,6 +380,7 @@
 				95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */,
 				01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */,
 				9565BF812CFFAFD400D1ECA6 /* HTTPClient.swift in Sources */,
+				01BD174D2D0CD57900DC1E94 /* AppDelegate+UINavigationBar.swift in Sources */,
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				9565BF872D01064F00D1ECA6 /* ResponseInfo.swift in Sources */,
 				9565BF8C2D023E7C00D1ECA6 /* UIImageView+Download.swift in Sources */,
@@ -392,6 +399,7 @@
 				95AA596C2CEFB7AC002705F5 /* Coordinator.swift in Sources */,
 				9565BF752CFBA04B00D1ECA6 /* Theme.swift in Sources */,
 				95AA597B2CF08EFB002705F5 /* LaunchViewController.swift in Sources */,
+				01BD174B2D0CCE8600DC1E94 /* FavoritesViewModel.swift in Sources */,
 				9565BF792CFF9C5400D1ECA6 /* EpisodeFilterView.swift in Sources */,
 				956EC48A2CF1D0B40082AD94 /* LaunchAssembly.swift in Sources */,
 				9565BF772CFCF2FD00D1ECA6 /* EpisodeHeader.swift in Sources */,

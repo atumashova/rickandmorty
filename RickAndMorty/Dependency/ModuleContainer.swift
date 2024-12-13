@@ -48,15 +48,20 @@ extension ModuleContainer {
 extension ModuleContainer {
     func getEpisodesView() -> UIViewController {
         let view = EpisodesViewController()
+        let navigation = UINavigationController(rootViewController: view)
         let viewModel = EpisodesViewModel(dependencies)
         view.viewModel = viewModel
-        return view
+        return navigation
     }
 }
 
 // MARK: - Favorites
 extension ModuleContainer {
     func getFavoritesView() -> UIViewController {
-        return FavoritesViewController()
+        let view = FavoritesViewController()
+        let navigation = UINavigationController(rootViewController: view)
+        let viewModel = FavoritesViewModel(dependencies)
+        view.viewModel = viewModel
+        return navigation
     }
 }
