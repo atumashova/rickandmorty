@@ -49,7 +49,7 @@ final class FavoritesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        self.navigationItem.title = "Favourites episodes"
+        self.navigationItem.title = Constants.favoriteEpisodesTitle
     }
     
     override func viewWillAppear(_ animated: Bool) {
