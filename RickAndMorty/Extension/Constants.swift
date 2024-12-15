@@ -18,9 +18,11 @@ enum Images {
     static let favoriteIcon = "favoriteIcon"
     static let filterIcon = "filterIcon"
     static let favoriteSelectedIcon = "favoriteSelectedIcon"
+    static let characterBarIcon = "characterBarIcon"
 }
 enum Constants {
     static let favoriteEpisodesTitle = "Favourites episodes"
+    static let navigationBackBtn = "GO BACK"
     static let filterTitle = "ADVANCED FILTERS"
     static let searchEpisodePlaceholder = "Name or episode (ex.S01E01)..."
 }
