@@ -16,9 +16,11 @@ protocol EpisodesViewModelDelegate: AnyObject {
     func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool
     func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool)
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void)
+    func getDetailEpisode(index: Int) -> EpisodeModel
 }
 
 final class EpisodesViewModel: EpisodesViewModelDelegate {
+    weak var coordinator : MainCoordinator?
     var searchString: String?
     var updateCharacterHandler: ((Int, CharacterModel) -> Void)?
     var updateEpisodesHandler: (([EpisodeModel]) -> Void)?
@@ -28,12 +30,18 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
     private var episodesPageInfo: ResponseInfo?
     private var episodesService: IEpisodesService?
     private let coreDataService: IFavoritesCoreDataSevice
+    private var moduleContainer: IModuleContainer?
     private var searchTask: DispatchWorkItem?
     
     init(_ dependencies: IDependencies) {
+        moduleContainer = dependencies.moduleContainer
         coreDataService = dependencies.favoritesCoreDataService
         episodesService = dependencies.episodesService
         getFavoriteEpisodes()
+    }
+    
+    func getDetailEpisode(index: Int) -> EpisodeModel {
+        return episodes[index]
     }
     
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void) {

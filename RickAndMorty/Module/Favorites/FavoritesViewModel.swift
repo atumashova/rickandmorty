@@ -12,6 +12,7 @@ protocol FavoritesViewModelDelegate: AnyObject {
     func getFavoriteEpisodes()
     func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool
     func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool)
+    func getDetailEpisode(index: Int) -> EpisodeModel
 }
 
 final class FavoritesViewModel: FavoritesViewModelDelegate {
@@ -25,6 +26,10 @@ final class FavoritesViewModel: FavoritesViewModelDelegate {
         coreDataService = dependencies.favoritesCoreDataService
         episodesService = dependencies.episodesService
         getFavoriteEpisodes()
+    }
+    
+    func getDetailEpisode(index: Int) -> EpisodeModel {
+        return favoriteEpisodes[index]
     }
     
     func getCharacter(episode: EpisodeModel) {

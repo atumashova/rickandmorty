@@ -13,6 +13,8 @@
 		01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */; };
 		01BD174B2D0CCE8600DC1E94 /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD174A2D0CCE7A00DC1E94 /* FavoritesViewModel.swift */; };
 		01BD174D2D0CD57900DC1E94 /* AppDelegate+UINavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */; };
+		01BD17502D0EEE4800DC1E94 /* CharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD174F2D0EEE4800DC1E94 /* CharacterViewController.swift */; };
+		01BD17522D0F0A9D00DC1E94 /* CharacterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17512D0F0A9000DC1E94 /* CharacterAssembly.swift */; };
 		9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF582CF2529E00D1ECA6 /* TabBarController.swift */; };
 		9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */; };
 		9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */; };
@@ -57,6 +59,8 @@
 		01BD17482D0B691700DC1E94 /* EpisodeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeEntity.swift; sourceTree = "<group>"; };
 		01BD174A2D0CCE7A00DC1E94 /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
 		01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UINavigationBar.swift"; sourceTree = "<group>"; };
+		01BD174F2D0EEE4800DC1E94 /* CharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewController.swift; sourceTree = "<group>"; };
+		01BD17512D0F0A9000DC1E94 /* CharacterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAssembly.swift; sourceTree = "<group>"; };
 		9565BF582CF2529E00D1ECA6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +117,15 @@
 				01BD17412D0A360800DC1E94 /* ImageDownloadError.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		01BD174E2D0EEDED00DC1E94 /* Character */ = {
+			isa = PBXGroup;
+			children = (
+				01BD17512D0F0A9000DC1E94 /* CharacterAssembly.swift */,
+				01BD174F2D0EEE4800DC1E94 /* CharacterViewController.swift */,
+			);
+			path = Character;
 			sourceTree = "<group>";
 		};
 		9565BF572CF251E400D1ECA6 /* TabBar */ = {
@@ -270,6 +283,7 @@
 		95AA59752CF08B84002705F5 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				01BD174E2D0EEDED00DC1E94 /* Character */,
 				9565BF5D2CF2561200D1ECA6 /* Favorites */,
 				9565BF5C2CF255FE00D1ECA6 /* Episodes */,
 				9565BF572CF251E400D1ECA6 /* TabBar */,
@@ -374,9 +388,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01BD17502D0EEE4800DC1E94 /* CharacterViewController.swift in Sources */,
 				9565BF852D01063900D1ECA6 /* ResponseEpisode.swift in Sources */,
 				01BD17472D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld in Sources */,
 				9565BF682CF9167D00D1ECA6 /* EpisodeCell.swift in Sources */,
+				01BD17522D0F0A9D00DC1E94 /* CharacterAssembly.swift in Sources */,
 				95AA59782CF08D65002705F5 /* ModuleContainer.swift in Sources */,
 				01BD17492D0B691F00DC1E94 /* EpisodeEntity.swift in Sources */,
 				9565BF812CFFAFD400D1ECA6 /* HTTPClient.swift in Sources */,

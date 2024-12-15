@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 final class EpisodesViewController: UIViewController {
+    enum Event {
+        case detailCharacter(String)
+    }
+    var didSendEventHandler: ((Event) -> Void)?
     private typealias EpisodeDataSource = UICollectionViewDiffableDataSource<Section, EpisodeModel>
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
@@ -78,6 +82,11 @@ final class EpisodesViewController: UIViewController {
 }
 // MARK: - UICollectionViewDelegate
 extension EpisodesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episode = viewModel?.getDetailEpisode(index: indexPath.row)
+        guard let character = episode?.character else {return}
+        didSendEventHandler?(.detailCharacter(character))
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let threshold: CGFloat = 100
         let contentHeight = scrollView.contentSize.height

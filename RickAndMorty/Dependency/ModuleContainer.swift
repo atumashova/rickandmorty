@@ -13,6 +13,7 @@ protocol IModuleContainer {
     func getTabBar() -> UIViewController
     func getEpisodesView() -> UIViewController
     func getFavoritesView() -> UIViewController
+    func getCharacterView() -> UIViewController
 }
 
 final class ModuleContainer: IModuleContainer {
@@ -43,7 +44,13 @@ extension ModuleContainer {
         return view
     }
 }
-
+// MARK: - Character
+extension ModuleContainer {
+    func getCharacterView() -> UIViewController {
+        let view = CharacterViewController()
+        return view
+    }
+}
 // MARK: - Episodes
 extension ModuleContainer {
     func getEpisodesView() -> UIViewController {
