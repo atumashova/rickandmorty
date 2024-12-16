@@ -13,8 +13,8 @@ final class CharacterViewController: UIViewController {
     private typealias CharacterSnapshot = NSDiffableDataSourceSnapshot<Section, String>
     private var dataSource: CharacterDataSource?
     private lazy var characterTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.separatorStyle = .none
+        let tableView = UITableView(frame: self.view.frame, style: .grouped)
+        tableView.backgroundColor = .white
         tableView.register(CharacterInfoCell.self, forCellReuseIdentifier: CharacterInfoCell.reuseIdentifier)
         tableView.register(CharacterHeader.self, forHeaderFooterViewReuseIdentifier: CharacterHeader.reuseIdentifier)
         return tableView
@@ -53,7 +53,7 @@ extension CharacterViewController: UITableViewDelegate {
         64
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        250
+        320
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CharacterHeader.reuseIdentifier) as? CharacterHeader {

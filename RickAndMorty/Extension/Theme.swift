@@ -21,11 +21,13 @@ struct ColorTheme {
     let blueText = UIColor(named: "BlueText") ?? UIColor.blue
     let separator = UIColor(named: "Separator") ?? UIColor.lightGray
     let characterText = UIColor(named: "CharacterText") ?? UIColor.gray
+    let characterInfo = UIColor(named: "CharacterInfo") ?? UIColor.gray
     let characterDarkText = UIColor(named: "CharacterDarkText") ?? UIColor.black
     let black = UIColor.black
 }
 
 struct FontTheme {
+    let characterName = UIFont(name: "Roboto-Regular", size: 32) ?? UIFont.systemFont(ofSize: 32)
     let characterInfoTitle = UIFont(name: "Roboto-Bold", size: 16) ?? UIFont.systemFont(ofSize: 16, weight: .bold)
     let characterInfoDescription = UIFont(name: "Roboto-Regular", size: 14) ?? UIFont.systemFont(ofSize: 14)
     let filter = UIFont(name: "Roboto-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium)
