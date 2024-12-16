@@ -57,6 +57,9 @@ final class MainCoordinator: Coordinator {
     
     func showCharacterViewController(_ character: String?, navVC: UINavigationController) {
         let viewController = CharacterAssembly.configure(dependencies)
+        if let characterVC = viewController as? CharacterViewController, let character = character {
+            characterVC.setCharacter(character)
+        }
         navVC.pushViewController(viewController, animated: true)
     }
 }

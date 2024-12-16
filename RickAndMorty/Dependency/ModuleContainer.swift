@@ -48,6 +48,8 @@ extension ModuleContainer {
 extension ModuleContainer {
     func getCharacterView() -> UIViewController {
         let view = CharacterViewController()
+        let viewModel = CharacterViewModel(dependencies)
+        view.viewModel = viewModel
         return view
     }
 }

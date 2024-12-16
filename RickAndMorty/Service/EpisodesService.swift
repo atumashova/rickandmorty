@@ -36,9 +36,11 @@ struct EpisodesService: IEpisodesService {
                     let model = try data.decoded() as CharacterModel
                     returnedResult = .success(model)
                 } catch let error {
+                    print(error)
                     returnedResult = .failure(error)
                 }
             case .failure(let error):
+                print(error)
                 returnedResult = .failure(error)
             }
         }

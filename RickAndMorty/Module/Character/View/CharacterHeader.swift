@@ -17,9 +17,10 @@ final class CharacterHeader: UITableViewHeaderFooterView {
     }()
     private lazy var avatarImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
         imageView.layer.cornerRadius = 74
         imageView.layer.borderWidth = 5
-        imageView.layer.borderColor = UIColor.theme.secondBackground.cgColor
+        imageView.layer.borderColor = UIColor.theme.characterBorder.cgColor
         return imageView
     }()
     private lazy var nameLabel: UILabel = {
@@ -51,6 +52,11 @@ final class CharacterHeader: UITableViewHeaderFooterView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configure(model: CharacterModel) {
+        nameLabel.text = model.name
+        avatarImageView.downloaded(from: model.image, contentMode: .scaleAspectFill)
     }
     
     private func setupUI() {

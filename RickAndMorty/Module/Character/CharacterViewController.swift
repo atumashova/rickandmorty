@@ -9,24 +9,37 @@ import Foundation
 import UIKit
 
 final class CharacterViewController: UIViewController {
-    private typealias CharacterDataSource = UITableViewDiffableDataSource<Section, String>
-    private typealias CharacterSnapshot = NSDiffableDataSourceSnapshot<Section, String>
+    private typealias CharacterDataSource = UITableViewDiffableDataSource<Section, CharacterInfo>
+    private typealias CharacterSnapshot = NSDiffableDataSourceSnapshot<Section, CharacterInfo>
     private var dataSource: CharacterDataSource?
     private lazy var characterTableView: UITableView = {
         let tableView = UITableView(frame: self.view.frame, style: .grouped)
+        tableView.allowsSelection = false
         tableView.backgroundColor = .white
         tableView.register(CharacterInfoCell.self, forCellReuseIdentifier: CharacterInfoCell.reuseIdentifier)
         tableView.register(CharacterHeader.self, forHeaderFooterViewReuseIdentifier: CharacterHeader.reuseIdentifier)
         return tableView
     }()
+    var viewModel: CharacterViewModelDelegate? {
+        didSet {
+            viewModel?.updateCharacterHandler = { [weak self] character in
+                self?.updateInfo(character: character)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        updateInfo()
+    }
+    func setCharacter(_ str: String) {
+        viewModel?.getCharacter(character: str)
     }
     
-    private func updateInfo() {
-        updateDataSource(["gtregtrgt", "Btrbtrb", "btrbtrbtr", "btbtrbrtb"])
+    private func updateInfo(character: CharacterModel) {
+        updateDataSource(character.info)
+        if let header = characterTableView.headerView(forSection: 0) as? CharacterHeader {
+            header.configure(model: character)
+        }
     }
     
     private func setupUI() {
@@ -70,14 +83,14 @@ private extension CharacterViewController {
     }
     private func makeDataSouce() {
         dataSource = CharacterDataSource(tableView: characterTableView, cellProvider: {
-            tableView, indexPath, str in
+            tableView, indexPath, info in
             guard let cell = self.characterTableView.dequeueReusableCell(withIdentifier: CharacterInfoCell.reuseIdentifier, for: indexPath) as? CharacterInfoCell
             else { return nil }
-            cell.configure(title: "Title", description: str)
+            cell.configure(title: info.name, description: info.value)
             return cell
         })
     }
-    private func updateDataSource(_ data: [String]) {
+    private func updateDataSource(_ data: [CharacterInfo]) {
         var snapshot = CharacterSnapshot()
         snapshot.appendSections([Section.main])
         snapshot.appendItems(data)

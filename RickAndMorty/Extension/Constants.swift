@@ -22,6 +22,12 @@ enum Images {
     static let characterCameraIcon = "characterCameraIcon"
 }
 enum Constants {
+    static let gender = "Gender"
+    static let status = "Status"
+    static let specie = "Specie"
+    static let origin = "Origin"
+    static let type = "Type"
+    static let location = "Location"
     static let favoriteEpisodesTitle = "Favourites episodes"
     static let navigationBackBtn = "GO BACK"
     static let infoCharacterTitle = "Informations"

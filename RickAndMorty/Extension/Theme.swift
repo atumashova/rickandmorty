@@ -22,6 +22,7 @@ struct ColorTheme {
     let separator = UIColor(named: "Separator") ?? UIColor.lightGray
     let characterText = UIColor(named: "CharacterText") ?? UIColor.gray
     let characterInfo = UIColor(named: "CharacterInfo") ?? UIColor.gray
+    let characterBorder = UIColor(named: "CharacterBorder") ?? UIColor.gray
     let characterDarkText = UIColor(named: "CharacterDarkText") ?? UIColor.black
     let black = UIColor.black
 }
