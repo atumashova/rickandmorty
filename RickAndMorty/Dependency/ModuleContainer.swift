@@ -13,6 +13,7 @@ protocol IModuleContainer {
     func getTabBar() -> UIViewController
     func getEpisodesView() -> UIViewController
     func getFavoritesView() -> UIViewController
+    func getCharacterView() -> UIViewController
 }
 
 final class ModuleContainer: IModuleContainer {
@@ -43,20 +44,33 @@ extension ModuleContainer {
         return view
     }
 }
-
+// MARK: - Character
+extension ModuleContainer {
+    func getCharacterView() -> UIViewController {
+        let view = CharacterViewController()
+        let viewModel = CharacterViewModel(dependencies)
+        view.viewModel = viewModel
+        return view
+    }
+}
 // MARK: - Episodes
 extension ModuleContainer {
     func getEpisodesView() -> UIViewController {
         let view = EpisodesViewController()
+        let navigation = UINavigationController(rootViewController: view)
         let viewModel = EpisodesViewModel(dependencies)
         view.viewModel = viewModel
-        return view
+        return navigation
     }
 }
 
 // MARK: - Favorites
 extension ModuleContainer {
     func getFavoritesView() -> UIViewController {
-        return FavoritesViewController()
+        let view = FavoritesViewController()
+        let navigation = UINavigationController(rootViewController: view)
+        let viewModel = FavoritesViewModel(dependencies)
+        view.viewModel = viewModel
+        return navigation
     }
 }

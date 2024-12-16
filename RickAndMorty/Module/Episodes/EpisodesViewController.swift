@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 final class EpisodesViewController: UIViewController {
+    enum Event {
+        case detailCharacter(String)
+    }
+    var didSendEventHandler: ((Event) -> Void)?
     private typealias EpisodeDataSource = UICollectionViewDiffableDataSource<Section, EpisodeModel>
     private typealias EpisodeSnapshot = NSDiffableDataSourceSnapshot<Section, EpisodeModel>
     private var dataSource: EpisodeDataSource?
@@ -78,6 +82,11 @@ final class EpisodesViewController: UIViewController {
 }
 // MARK: - UICollectionViewDelegate
 extension EpisodesViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let episode = viewModel?.getDetailEpisode(index: indexPath.row)
+        guard let character = episode?.character else {return}
+        didSendEventHandler?(.detailCharacter(character))
+    }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let threshold: CGFloat = 100
         let contentHeight = scrollView.contentSize.height
@@ -97,7 +106,8 @@ private extension EpisodesViewController {
         dataSource = EpisodeDataSource(collectionView: episodesCollectionView, cellProvider: { collectionView, indexPath, episode in
             guard let cell = self.episodesCollectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCell.reuseIdentifier, for: indexPath) as? EpisodeCell
             else { return UICollectionViewCell() }
-            cell.configure(episode: episode)
+            cell.delegate = self
+            cell.configure(episode: episode, isFavorite: self.viewModel?.isFavoriteEpisode(episode) ?? false)
             self.viewModel?.getCharacter(episode: episode)
             return cell
         })
@@ -120,6 +130,13 @@ private extension EpisodesViewController {
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
 }
+// MARK: - Episode cell
+extension EpisodesViewController: EpisodeCellDelegate {
+    func updateFavorite(isSelected: Bool, episode: EpisodeModel) {
+        viewModel?.changeEpisodeFavorite(episode: episode, isFavorite: isSelected)
+    }
+}
+
 // MARK: - Episode header
 extension EpisodesViewController: EpisodeHeaderDelegate {
     func changeSearchTextField(text: String?) {
