@@ -33,6 +33,17 @@ enum Constants {
     static let infoCharacterTitle = "Informations"
     static let filterTitle = "ADVANCED FILTERS"
     static let searchEpisodePlaceholder = "Name or episode (ex.S01E01)..."
+    static let loadImageAlert = "Загрузите изображение"
+    static let loadImageCamera = "Камера"
+    static let loadImageLibrary = "Галерея"
+    static let deniedCameraTitle = "Нет доступа к камере"
+    static let deniedLibraryTitle = "Нет доступа к галерее"
+    static let deniedCameraMessage = "Вы можете изменить это в настройках"
+    static let notAvailableCameraTitle = "Ошибка открытия камеры"
+    static let notAvailableCameraMessage = "У этого устройства нет камеры."
+    static let deniedLibraryMessage = "Вы можете изменить это в настройках"
+    static let ok = "Ок"
+    static let settings = "Настройки"
 }
 enum CoreDataConstant {
     static let episodeContainerName = "EpisodeContainer"

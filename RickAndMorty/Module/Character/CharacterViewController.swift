@@ -70,10 +70,29 @@ extension CharacterViewController: UITableViewDelegate {
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CharacterHeader.reuseIdentifier) as? CharacterHeader {
+            header.delegate = self
             return header
         } else {
             return nil
         }
+    }
+}
+// MARK: - Header Delegate
+extension CharacterViewController: CharacterHeaderDelegate {
+    func changePhotoCharacterTapped() {
+        CameraManager.shared.delegate = self
+        CameraManager.shared.presentChoosePhotoAlert(from: self)
+    }
+}
+// MARK: - Camera
+extension CharacterViewController: CameraManagerDelegate {
+    func didCaptureImage(_ image: UIImage) {
+        if let header = characterTableView.headerView(forSection: 0) as? CharacterHeader {
+            header.updatePhoto(image: image)
+        }
+    }
+    func didFailWithError(_ error: String) {
+        
     }
 }
 // MARK: - UITableViewDataSource

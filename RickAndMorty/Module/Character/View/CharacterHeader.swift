@@ -8,7 +8,12 @@
 import Foundation
 import UIKit
 
+protocol CharacterHeaderDelegate {
+    func changePhotoCharacterTapped()
+}
+
 final class CharacterHeader: UITableViewHeaderFooterView {
+    var delegate: CharacterHeaderDelegate?
     static let reuseIdentifier = "CharacterHeader"
     private lazy var avatarView: UIView = {
         let view = UIView()
@@ -58,8 +63,11 @@ final class CharacterHeader: UITableViewHeaderFooterView {
         nameLabel.text = model.name
         avatarImageView.downloaded(from: model.image, contentMode: .scaleAspectFill)
     }
-    
+    func updatePhoto(image: UIImage) {
+        avatarImageView.image = image
+    }
     private func setupUI() {
+        cameraBtn.addTarget(self, action: #selector(tapChangePhotoButton), for: .touchUpInside)
         avatarView.addSubview(cameraBtn)
         avatarView.addSubview(avatarImageView)
         cameraBtn.translatesAutoresizingMaskIntoConstraints = false
@@ -88,5 +96,8 @@ final class CharacterHeader: UITableViewHeaderFooterView {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24)
         ])
+    }
+    @objc func tapChangePhotoButton() {
+        delegate?.changePhotoCharacterTapped()
     }
 }
