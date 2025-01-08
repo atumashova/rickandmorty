@@ -61,7 +61,7 @@ final class CharacterHeader: UITableViewHeaderFooterView {
     
     func configure(model: CharacterModel) {
         nameLabel.text = model.name
-        avatarImageView.downloaded(from: model.image, contentMode: .scaleAspectFill)
+        avatarImageView.loadImage(from: model.image, contentMode: .scaleAspectFill)
     }
     func updatePhoto(image: UIImage) {
         avatarImageView.image = image

@@ -97,7 +97,7 @@ final class EpisodeCell: UICollectionViewCell {
     
     func configure(character: CharacterModel) {
         characterLabel.text = character.name
-        characterImageView.downloaded(from: character.image, contentMode: .scaleAspectFill)
+        characterImageView.loadImage(from: character.image, contentMode: .scaleAspectFill)
     }
     
     @objc func tapFavoriteButton(sender: UIButton) {
