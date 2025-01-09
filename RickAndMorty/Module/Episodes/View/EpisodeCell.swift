@@ -103,7 +103,9 @@ final class EpisodeCell: UICollectionViewCell {
     @objc func tapFavoriteButton(sender: UIButton) {
         guard let episode = self.episode else {return}
         delegate?.updateFavorite(isSelected: sender.isSelected, episode: episode)
-        sender.isSelected = !sender.isSelected
+        sender.zoomIn(duration: 0.5) {
+            sender.isSelected = !sender.isSelected
+        }
     }
     
     private func setupUI() {

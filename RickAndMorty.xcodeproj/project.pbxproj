@@ -20,6 +20,7 @@
 		01BD17592D10BB9200DC1E94 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17582D10BB8200DC1E94 /* CharacterViewModel.swift */; };
 		01BD175D2D1C90DD00DC1E94 /* CameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD175C2D1C90D500DC1E94 /* CameraManager.swift */; };
 		01BD175F2D2EE27400DC1E94 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD175E2D2EE26200DC1E94 /* ImageCache.swift */; };
+		01BD17612D2FF45E00DC1E94 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01BD17602D2FF43100DC1E94 /* UIView+Animation.swift */; };
 		9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF582CF2529E00D1ECA6 /* TabBarController.swift */; };
 		9565BF5B2CF2545B00D1ECA6 /* TabBarAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */; };
 		9565BF5F2CF2563100D1ECA6 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */; };
@@ -71,6 +72,7 @@
 		01BD17582D10BB8200DC1E94 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		01BD175C2D1C90D500DC1E94 /* CameraManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraManager.swift; sourceTree = "<group>"; };
 		01BD175E2D2EE26200DC1E94 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		01BD17602D2FF43100DC1E94 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		9565BF582CF2529E00D1ECA6 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		9565BF5A2CF2545B00D1ECA6 /* TabBarAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarAssembly.swift; sourceTree = "<group>"; };
 		9565BF5E2CF2563100D1ECA6 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 		95AA597C2CF0B2F8002705F5 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				01BD17602D2FF43100DC1E94 /* UIView+Animation.swift */,
 				01BD174C2D0CD56A00DC1E94 /* AppDelegate+UINavigationBar.swift */,
 				01BD17402D0A35EF00DC1E94 /* Errors */,
 				95AA597D2CF0B3C3002705F5 /* Constants.swift */,
@@ -423,6 +426,7 @@
 				95AA596F2CEFB843002705F5 /* Dependencies.swift in Sources */,
 				9565BF872D01064F00D1ECA6 /* ResponseInfo.swift in Sources */,
 				9565BF8C2D023E7C00D1ECA6 /* UIImageView+Download.swift in Sources */,
+				01BD17612D2FF45E00DC1E94 /* UIView+Animation.swift in Sources */,
 				01BD175F2D2EE27400DC1E94 /* ImageCache.swift in Sources */,
 				9565BF612CF25C7A00D1ECA6 /* FavoritesViewController.swift in Sources */,
 				9565BF592CF2529E00D1ECA6 /* TabBarController.swift in Sources */,
