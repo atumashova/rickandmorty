@@ -29,16 +29,16 @@ final class CharacterInfoCell: UITableViewCell {
         view.backgroundColor = UIColor.theme.separator
         return view
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private func setupUI() {
         let stackView = UIStackView(arrangedSubviews: [titleLabel, descriptionLabel])
         stackView.axis = .vertical
@@ -59,7 +59,7 @@ final class CharacterInfoCell: UITableViewCell {
             separatorView.heightAnchor.constraint(equalToConstant: 1)
         ])
     }
-    
+
     func configure(title: String, description: String) {
         titleLabel.text = title
         descriptionLabel.text = description

@@ -13,7 +13,7 @@ final class TabBarController: UITabBarController {
         self.controllers = controllers
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -26,7 +26,7 @@ final class TabBarController: UITabBarController {
     }
     private func setupUI() {
     }
-    
+
     private func configure(controllers: [UIViewController]) {
         self.controllers = controllers
         viewControllers = controllers

@@ -16,7 +16,7 @@ final class FavoritesCoreDataService: IFavoritesCoreDataSevice {
     private let containerName: String = CoreDataConstant.episodeContainerName
     private let entityName: String = CoreDataConstant.episodeEntityName
     private var savedEntities: [EpisodeEntity] = []
-    
+
     init() {
         container = NSPersistentContainer(name: containerName)
         container.loadPersistentStores { _, error in
@@ -25,7 +25,7 @@ final class FavoritesCoreDataService: IFavoritesCoreDataSevice {
             }
         }
     }
-    
+
     func fetch(completion: @escaping (FavoritesCoreDataResult) -> Void) {
         let request = NSFetchRequest<EpisodeEntity>(entityName: entityName)
         do {
@@ -40,28 +40,28 @@ final class FavoritesCoreDataService: IFavoritesCoreDataSevice {
             completion(.failure(error))
         }
     }
-    
+
     func update(episodes: [EpisodeModel]) {
         if !savedEntities.isEmpty {
             delete(entities: savedEntities)
         }
         add(episodes: episodes)
     }
-    
+
     private func add(episodes: [EpisodeModel]) {
-        episodes.enumerated().forEach { _, episode in
+        episodes.forEach { episode in
             EpisodeEntity.make(context: container.viewContext, model: episode)
             applyChanges()
         }
     }
-    
+
     private func delete(entities: [EpisodeEntity]) {
         entities.forEach { entity in
             container.viewContext.delete(entity)
         }
         applyChanges()
     }
-    
+
     private func save() {
         do {
             try container.viewContext.save()
@@ -69,7 +69,7 @@ final class FavoritesCoreDataService: IFavoritesCoreDataSevice {
             print("Save \(error)")
         }
     }
-    
+
     private func applyChanges() {
         save()
         fetch { _ in }

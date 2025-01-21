@@ -26,7 +26,7 @@ extension CharacterModel {
             CharacterInfo(name: Constants.specie, value: species),
             CharacterInfo(name: Constants.origin, value: origin.name),
             CharacterInfo(name: Constants.type, value: type),
-            CharacterInfo(name: Constants.location, value: location.name),
+            CharacterInfo(name: Constants.location, value: location.name)
         ]
     }
 }

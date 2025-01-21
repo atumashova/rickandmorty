@@ -15,11 +15,11 @@ final class CharacterViewModel: CharacterViewModelDelegate {
     private var characterModel: CharacterModel?
     private var isLoadingEpisodes: Bool = false
     private var episodesService: IEpisodesService?
-    
+
     init(_ dependencies: IDependencies) {
         episodesService = dependencies.episodesService
     }
-    
+
     func getCharacter(character: String) {
         episodesService?.getCharacter(url: character, completion: { result in
             switch result {

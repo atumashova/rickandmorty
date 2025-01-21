@@ -27,11 +27,11 @@ final class FavoritesViewModel: FavoritesViewModelDelegate {
         episodesService = dependencies.episodesService
         getFavoriteEpisodes()
     }
-    
+
     func getDetailEpisode(index: Int) -> EpisodeModel {
         return favoriteEpisodes[index]
     }
-    
+
     func getCharacter(episode: EpisodeModel) {
         guard let index = favoriteEpisodes.firstIndex(of: episode) else {return}
         guard let character = episode.character else {return}
@@ -44,11 +44,11 @@ final class FavoritesViewModel: FavoritesViewModelDelegate {
             }
         })
     }
-    
+
     func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool {
         favoriteEpisodes.contains(where: {$0.id == episode.id})
     }
-    
+
     func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool) {
         if isFavorite {
             // удалить из избранных
@@ -60,18 +60,18 @@ final class FavoritesViewModel: FavoritesViewModelDelegate {
             coreDataService.update(episodes: favoriteEpisodes)
         }
     }
-    
+
     func getFavoriteEpisodes() {
         coreDataService.fetch { result in
             switch result {
             case .success(let episodes):
                 self.favoriteEpisodes = episodes ?? []
                 self.updateFavoritesEpisodesHandler?(self.favoriteEpisodes)
-            case .failure(let error):
+            case .failure:
                 self.favoriteEpisodes = []
                 self.updateFavoritesEpisodesHandler?([])
             }
         }
-        
+
     }
 }

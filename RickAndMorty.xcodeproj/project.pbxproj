@@ -347,6 +347,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 95AA59672CEE798C002705F5 /* Build configuration list for PBXNativeTarget "RickAndMorty" */;
 			buildPhases = (
+				0161636D2D3EF4C7002040E1 /* ShellScript */,
 				95AA594F2CEE7988002705F5 /* Sources */,
 				95AA59502CEE7988002705F5 /* Frameworks */,
 				95AA59512CEE7988002705F5 /* Resources */,
@@ -384,6 +385,9 @@
 				Base,
 			);
 			mainGroup = 95AA594A2CEE7987002705F5;
+			packageReferences = (
+				0161636E2D3EF60D002040E1 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
+			);
 			productRefGroup = 95AA59542CEE7988002705F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -408,6 +412,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0161636D2D3EF4C7002040E1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nexport PATH=\"$PATH:/usr/local/bin:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"error: SwiftLint does not exist, download it from https://github.com/realm/SwiftLint\"\n  exit 1\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		95AA594F2CEE7988002705F5 /* Sources */ = {
@@ -674,6 +698,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0161636E2D3EF60D002040E1 /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.58.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		01BD17452D0A392900DC1E94 /* EpisodeContainer.xcdatamodeld */ = {

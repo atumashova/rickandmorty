@@ -34,14 +34,14 @@ final class CharacterViewController: UIViewController {
     func setCharacter(_ str: String) {
         viewModel?.getCharacter(character: str)
     }
-    
+
     private func updateInfo(character: CharacterModel) {
         updateDataSource(character.info)
         if let header = characterTableView.headerView(forSection: 0) as? CharacterHeader {
             header.configure(model: character)
         }
     }
-    
+
     private func setupUI() {
         navigationItem.backButtonTitle = Constants.navigationBackBtn
         let leftItem = UIBarButtonItem(customView: UIImageView(image: UIImage(named: Images.characterBarIcon)))
@@ -69,7 +69,9 @@ extension CharacterViewController: UITableViewDelegate {
         320
     }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: CharacterHeader.reuseIdentifier) as? CharacterHeader {
+        if let header = tableView.dequeueReusableHeaderFooterView(
+            withIdentifier: CharacterHeader.reuseIdentifier
+        ) as? CharacterHeader {
             header.delegate = self
             return header
         } else {
@@ -92,7 +94,7 @@ extension CharacterViewController: CameraManagerDelegate {
         }
     }
     func didFailWithError(_ error: String) {
-        
+
     }
 }
 // MARK: - UITableViewDataSource
@@ -101,9 +103,11 @@ private extension CharacterViewController {
         case main
     }
     private func makeDataSouce() {
-        dataSource = CharacterDataSource(tableView: characterTableView, cellProvider: {
-            tableView, indexPath, info in
-            guard let cell = self.characterTableView.dequeueReusableCell(withIdentifier: CharacterInfoCell.reuseIdentifier, for: indexPath) as? CharacterInfoCell
+        dataSource = CharacterDataSource(tableView: characterTableView, cellProvider: { _, indexPath, info in
+            guard let cell = self.characterTableView.dequeueReusableCell(
+                withIdentifier: CharacterInfoCell.reuseIdentifier,
+                for: indexPath
+            ) as? CharacterInfoCell
             else { return nil }
             cell.configure(title: info.name, description: info.value)
             return cell

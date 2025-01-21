@@ -24,12 +24,23 @@ final class FavoritesViewController: UIViewController {
     lazy var collectionViewLayout: UICollectionViewLayout = {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(357))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalWidth(1.0))
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalWidth(1.0)
+        )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 55
-        section.contentInsets = NSDirectionalEdgeInsets(top: 30, leading: 22, bottom: 20, trailing: 22)
-        let headerFooterSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(316))
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 30,
+            leading: 22,
+            bottom: 20,
+            trailing: 22
+        )
+        let headerFooterSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(316)
+        )
         let layout = UICollectionViewCompositionalLayout(section: section)
         return layout
     }()
@@ -39,7 +50,9 @@ final class FavoritesViewController: UIViewController {
                 self?.updateDataSource(episodes)
             }
             viewModel?.updateCharacterHandler = { [weak self] (episodeIndex, character) in
-                guard let cell = self?.episodesCollectionView.cellForItem(at: IndexPath(row: episodeIndex, section: 0)) as? EpisodeCell else {
+                guard let cell = self?.episodesCollectionView.cellForItem(
+                    at: IndexPath(row: episodeIndex, section: 0)
+                ) as? EpisodeCell else {
                     return
                 }
                 cell.configure(character: character)
@@ -51,16 +64,16 @@ final class FavoritesViewController: UIViewController {
         setupUI()
         self.navigationItem.title = Constants.favoriteEpisodesTitle
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateInfo()
     }
-    
+
     private func updateInfo() {
         viewModel?.getFavoriteEpisodes()
     }
-    
+
     private func setupUI() {
         view.backgroundColor = .white
         makeDataSouce()
@@ -90,8 +103,13 @@ private extension FavoritesViewController {
         case main
     }
     private func makeDataSouce() {
-        dataSource = EpisodeDataSource(collectionView: episodesCollectionView, cellProvider: { collectionView, indexPath, episode in
-            guard let cell = self.episodesCollectionView.dequeueReusableCell(withReuseIdentifier: EpisodeCell.reuseIdentifier, for: indexPath) as? EpisodeCell
+        dataSource = EpisodeDataSource(
+            collectionView: episodesCollectionView,
+            cellProvider: { _, indexPath, episode in
+            guard let cell = self.episodesCollectionView.dequeueReusableCell(
+                withReuseIdentifier: EpisodeCell.reuseIdentifier,
+                for: indexPath
+            ) as? EpisodeCell
             else { return UICollectionViewCell() }
             cell.delegate = self
             cell.configure(episode: episode, isFavorite: self.viewModel?.isFavoriteEpisode(episode) ?? false)

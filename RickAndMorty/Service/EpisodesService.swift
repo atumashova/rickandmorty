@@ -20,7 +20,7 @@ struct EpisodesService: IEpisodesService {
     init(_ dependencies: IDependencies) {
         networkService = dependencies.networkService
     }
-    
+
     func getCharacter(url: String, completion: @escaping (CharacterResult) -> Void) {
         guard let url = URL(string: url) else {return}
         networkService.request(url: url) { result in
@@ -45,7 +45,7 @@ struct EpisodesService: IEpisodesService {
             }
         }
     }
-    
+
     func getEpisodes(urlStr: String, completion: @escaping (EpisodesResult) -> Void) {
         guard let url = URL(string: urlStr) else {return}
         networkService.request(url: url) { result in
@@ -59,7 +59,14 @@ struct EpisodesService: IEpisodesService {
             case .success(let data):
                 do {
                     let model = try data.decoded() as ResponseEpisode
-                    let episodes = model.results.map({EpisodeModel(id: $0.id, name: $0.name, episode: $0.episode, character: $0.characters.randomElement())})
+                    let episodes = model.results.map({
+                        EpisodeModel(
+                            id: $0.id,
+                            name: $0.name,
+                            episode: $0.episode,
+                            character: $0.characters.randomElement()
+                        )
+                    })
                     returnedResult = .success((episodes, model.info))
                 } catch let error {
                     returnedResult = .failure(error)

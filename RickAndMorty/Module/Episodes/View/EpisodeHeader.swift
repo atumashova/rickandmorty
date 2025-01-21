@@ -8,18 +8,18 @@
 import Foundation
 import UIKit
 
-protocol EpisodeHeaderDelegate {
+protocol EpisodeHeaderDelegate: AnyObject {
     func changeSearchTextField(text: String?)
 }
 
 class EpisodeHeaderView: UICollectionReusableView {
-    
+
     static let reuseIdentifier = "EpisodeHeaderView"
-    var delegate: EpisodeHeaderDelegate?
+    weak var delegate: EpisodeHeaderDelegate?
     var search: String? {
         didSet {
             searchField.text = search
-            if let search = search {
+            if search != nil {
                 DispatchQueue.main.async {
                     self.searchField.becomeFirstResponder()
                 }
@@ -30,18 +30,18 @@ class EpisodeHeaderView: UICollectionReusableView {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private lazy var logoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: Images.logo)
         return imageView
     }()
-    
+
     private lazy var searchField: UISearchTextField = {
         let searchField = UISearchTextField()
         searchField.placeholder = Constants.searchEpisodePlaceholder
@@ -52,12 +52,12 @@ class EpisodeHeaderView: UICollectionReusableView {
         searchField.layer.borderColor = UIColor.black.withAlphaComponent(0.5).cgColor
         return searchField
     }()
-    
+
     private lazy var filterButton: EpisodeFilterView = {
         let view = EpisodeFilterView()
         return view
     }()
-    
+
     private func setupUI() {
         searchField.addTarget(self, action: #selector(searchTextFildValueChanged), for: .editingChanged)
         let stackView = UIStackView(arrangedSubviews: [logoImageView, searchField, filterButton])

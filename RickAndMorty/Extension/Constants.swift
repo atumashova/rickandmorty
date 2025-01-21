@@ -42,7 +42,7 @@ enum Constants {
     static let notAvailableCameraTitle = "Ошибка открытия камеры"
     static let notAvailableCameraMessage = "У этого устройства нет камеры."
     static let deniedLibraryMessage = "Вы можете изменить это в настройках"
-    static let ok = "Ок"
+    static let okTitle = "Ок"
     static let settings = "Настройки"
 }
 enum CoreDataConstant {

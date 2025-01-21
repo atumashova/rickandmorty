@@ -11,58 +11,71 @@ import UIKit
 class ImageCache {
     static let shared = ImageCache()
     private init() {}
-    
+
     private let cache = NSCache<NSString, UIImage>()
-    
+
     private let fileManager = FileManager.default
-    private lazy var cacheDirectory: URL = {
-        let documentsDirectory = try! fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-        return documentsDirectory.appendingPathComponent("ImageCache")
+    private lazy var cacheDirectory: URL? = {
+        let documentsDirectory = try? fileManager.url(
+            for: .documentDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: false
+        )
+        return documentsDirectory?.appendingPathComponent("ImageCache")
     }()
-    
+
     /// Создать для кэша папку
     private func createCacheDirectory() {
+        guard let cacheDirectory = cacheDirectory else {
+            return
+        }
         if !fileManager.fileExists(atPath: cacheDirectory.path) {
             try? fileManager.createDirectory(at: cacheDirectory, withIntermediateDirectories: true, attributes: nil)
         }
     }
-    
+
     /// Получить фото из кэша
     func getImage(forKey key: String) -> UIImage? {
         return cache.object(forKey: key as NSString)
     }
-    
+
     /// Добавить фото в кэш
     func setImage(_ image: UIImage, forKey key: String) {
         cache.setObject(image, forKey: key as NSString)
     }
-    
+
     /// Есть ли в кэше картинка
     func isInCache(forKey key: String) -> Bool {
         let cache = cache.object(forKey: key as NSString)
         return cache != nil
     }
-    
+
     /// Получить фото из кэша на диске
     func getImageFromDiskCache(forKey key: String) -> UIImage? {
-        let filePath = cacheDirectory.appendingPathComponent(key).path
+        guard let filePath = cacheDirectory?.appendingPathComponent(key).path else {
+            return nil
+        }
         if let data = try? Data(contentsOf: URL(fileURLWithPath: filePath)), let image = UIImage(data: data) {
             return image
         }
         return nil
     }
-    
+
     /// Добавить в кэш на диск фото
     func setImageToDiskCache(_ image: UIImage, forKey key: String) {
         createCacheDirectory()
-        let filePath = cacheDirectory.appendingPathComponent(key).path
+        guard let filePath = cacheDirectory?.appendingPathComponent(key).path else {
+            return
+        }
         if let data = image.pngData() {
             try? data.write(to: URL(fileURLWithPath: filePath))
         }
     }
-    
-    ///Очистить кэш
+
+    /// Очистить кэш
     func clearDiskCache() {
+        guard let cacheDirectory = cacheDirectory else {return}
         try? fileManager.removeItem(at: cacheDirectory)
     }
 }
@@ -88,7 +101,7 @@ extension UIImageView {
                 self?.image = image
                 ImageCache.shared.setImage(image, forKey: cacheKey)
                 ImageCache.shared.setImageToDiskCache(image, forKey: cacheKey)
-            case .failure(_):
+            case .failure:
                 DispatchQueue.main.async {
                     self?.setupPlaceholder()
                 }

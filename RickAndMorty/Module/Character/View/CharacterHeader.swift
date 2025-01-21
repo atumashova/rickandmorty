@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-protocol CharacterHeaderDelegate {
+protocol CharacterHeaderDelegate: AnyObject {
     func changePhotoCharacterTapped()
 }
 
 final class CharacterHeader: UITableViewHeaderFooterView {
-    var delegate: CharacterHeaderDelegate?
+    weak var delegate: CharacterHeaderDelegate?
     static let reuseIdentifier = "CharacterHeader"
     private lazy var avatarView: UIView = {
         let view = UIView()
@@ -49,16 +49,16 @@ final class CharacterHeader: UITableViewHeaderFooterView {
         label.textAlignment = .left
         return label
     }()
-    
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func configure(model: CharacterModel) {
         nameLabel.text = model.name
         avatarImageView.loadImage(from: model.image, contentMode: .scaleAspectFill)
@@ -91,7 +91,7 @@ final class CharacterHeader: UITableViewHeaderFooterView {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             avatarView.heightAnchor.constraint(equalToConstant: 188),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor,constant: 16),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
             stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 24)

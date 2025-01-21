@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 final class LaunchViewController: UIViewController {
-    
+
     private lazy var animator: UIViewPropertyAnimator = {
         return UIViewPropertyAnimator(duration: 1, curve: .easeInOut)
     }()
-    
+
     private lazy var logoImageView: UIImageView = {
         let image = UIImage(named: Images.logo)
         let imageView = UIImageView(image: image)

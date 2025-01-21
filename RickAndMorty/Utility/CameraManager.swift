@@ -29,14 +29,14 @@ enum AddPhotosType {
         }
     }
 }
-protocol CameraManagerDelegate {
+protocol CameraManagerDelegate: AnyObject {
     func didCaptureImage(_ image: UIImage)
     func didFailWithError(_ error: String)
 }
 
 class CameraManager: NSObject {
     static let shared = CameraManager()
-    var delegate: CameraManagerDelegate?
+    weak var delegate: CameraManagerDelegate?
     private override init() {
         super.init()
     }
@@ -98,13 +98,13 @@ class CameraManager: NSObject {
     }
     func presentChoosePhotoAlert(from viewController: UIViewController) {
         let alert = UIAlertController(title: "", message: Constants.loadImageAlert, preferredStyle: .actionSheet)
-        let cameraAction = UIAlertAction(title: Constants.loadImageCamera, style: .default) { action in
+        let cameraAction = UIAlertAction(title: Constants.loadImageCamera, style: .default) { _ in
             alert.dismiss(animated: true) {
                 self.presentCamera(from: viewController)
             }
         }
         alert.addAction(cameraAction)
-        let libraryAction = UIAlertAction(title: Constants.loadImageLibrary, style: .default) { action in
+        let libraryAction = UIAlertAction(title: Constants.loadImageLibrary, style: .default) { _ in
             alert.dismiss(animated: true) {
                 self.presentPhotoLibrary(from: viewController)
             }
@@ -144,7 +144,7 @@ class CameraManager: NSObject {
         picker.delegate = self
         viewController.present(picker, animated: true, completion: nil)
     }
-    
+
     private func showCamera(from viewController: UIViewController) {
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = .camera
@@ -153,7 +153,7 @@ class CameraManager: NSObject {
     }
     private func showPermissionDeniedAlert(from viewController: UIViewController, type: AddPhotosType) {
         let alert = UIAlertController(title: type.title, message: type.message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.ok, style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: Constants.okTitle, style: .default, handler: nil))
         alert.addAction(UIAlertAction(title: Constants.settings, style: .default) { _ in
             if let url = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(url)
@@ -162,8 +162,12 @@ class CameraManager: NSObject {
         viewController.present(alert, animated: true, completion: nil)
     }
     private func showCameraNotAvailableAlert(from viewController: UIViewController) {
-        let alert = UIAlertController(title: Constants.notAvailableCameraTitle, message:Constants.notAvailableCameraMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.ok, style: .default, handler: nil))
+        let alert = UIAlertController(
+            title: Constants.notAvailableCameraTitle,
+            message: Constants.notAvailableCameraMessage,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: Constants.okTitle, style: .default, handler: nil))
         viewController.present(alert, animated: true, completion: nil)
     }
     func dismissCamera(from viewController: UIViewController) {
@@ -174,7 +178,7 @@ extension CameraManager: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true, completion: nil)
         for result in results {
-            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
+            result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self?.delegate?.didCaptureImage(image)
@@ -185,7 +189,10 @@ extension CameraManager: PHPickerViewControllerDelegate {
     }
 }
 extension CameraManager: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(
+        _ picker: UIImagePickerController,
+        didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+    ) {
         if let image = info[.originalImage] as? UIImage {
             delegate?.didCaptureImage(image)
         }
