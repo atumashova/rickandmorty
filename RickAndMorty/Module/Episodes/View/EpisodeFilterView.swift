@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 class EpisodeFilterView: UIView {
-    
+
     private lazy var filterImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: Images.filterIcon))
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-    
+
     private lazy var filterLabel: UILabel = {
         let label = UILabel()
         label.text = Constants.filterTitle
@@ -24,7 +24,7 @@ class EpisodeFilterView: UIView {
         label.textAlignment = .center
         return label
     }()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -52,7 +52,7 @@ class EpisodeFilterView: UIView {
             filterImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
     }
-    
+
     private func applyShadow() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2)

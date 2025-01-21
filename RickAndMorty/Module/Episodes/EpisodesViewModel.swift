@@ -13,23 +13,37 @@ protocol EpisodesViewModelDelegate: AnyObject {
     var updateCharacterHandler: ((_ episodeIndex: Int, _ character: CharacterModel) -> Void)? { get set }
     func getEpisodes(nextPage: Bool)
     func getCharacter(episode: EpisodeModel)
+    func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool
+    func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool)
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void)
+    func getDetailEpisode(index: Int) -> EpisodeModel
 }
 
 final class EpisodesViewModel: EpisodesViewModelDelegate {
+    weak var coordinator: MainCoordinator?
     var searchString: String?
     var updateCharacterHandler: ((Int, CharacterModel) -> Void)?
     var updateEpisodesHandler: (([EpisodeModel]) -> Void)?
+    private var favoriteEpisodes: [EpisodeModel] = []
     private var episodes: [EpisodeModel] = []
     private var isLoadingEpisodes: Bool = false
     private var episodesPageInfo: ResponseInfo?
     private var episodesService: IEpisodesService?
+    private let coreDataService: IFavoritesCoreDataSevice
+    private var moduleContainer: IModuleContainer?
     private var searchTask: DispatchWorkItem?
-    
+
     init(_ dependencies: IDependencies) {
+        moduleContainer = dependencies.moduleContainer
+        coreDataService = dependencies.favoritesCoreDataService
         episodesService = dependencies.episodesService
+        getFavoriteEpisodes()
     }
-    
+
+    func getDetailEpisode(index: Int) -> EpisodeModel {
+        return episodes[index]
+    }
+
     func changeSearchValue(_ search: String?, updateSearchRequest: @escaping () -> Void) {
         guard let searchText = search else { return }
         self.searchTask?.cancel()
@@ -44,7 +58,7 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
         self.searchTask = task
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.5, execute: task)
     }
-    
+
     func getCharacter(episode: EpisodeModel) {
         guard let index = episodes.firstIndex(of: episode) else {return}
         guard let character = episode.character else {return}
@@ -57,7 +71,23 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
             }
         })
     }
-    
+
+    func isFavoriteEpisode(_ episode: EpisodeModel) -> Bool {
+        favoriteEpisodes.contains(where: {$0.id == episode.id})
+    }
+
+    func changeEpisodeFavorite(episode: EpisodeModel, isFavorite: Bool) {
+        if isFavorite {
+            // удалить из избранных
+            favoriteEpisodes.removeAll(where: {$0.id == episode.id})
+            coreDataService.update(episodes: favoriteEpisodes)
+        } else {
+            // добавить в избранное
+            favoriteEpisodes.append(episode)
+            coreDataService.update(episodes: favoriteEpisodes)
+        }
+    }
+
     func getEpisodes(nextPage: Bool) {
         guard !isLoadingEpisodes else {
             return
@@ -100,11 +130,23 @@ final class EpisodesViewModel: EpisodesViewModelDelegate {
             }
         })
     }
-    
+
+    private func getFavoriteEpisodes() {
+        coreDataService.fetch { result in
+            switch result {
+            case .success(let episodes):
+                self.favoriteEpisodes = episodes ?? []
+            case .failure:
+                self.favoriteEpisodes = []
+            }
+        }
+
+    }
+
     private func isEpisodeSearchPattern(string: String) -> Bool {
         let pattern = "^(S(0[1-5])E(0[1-9]|10))|S(0[1-5])|E(0[1-9]|10)$"
-        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+        let regex = try? NSRegularExpression(pattern: pattern, options: [])
         let range = NSRange(location: 0, length: string.utf16.count)
-        return regex.firstMatch(in: string, options: [], range: range) != nil
+        return regex?.firstMatch(in: string, options: [], range: range) != nil
     }
 }

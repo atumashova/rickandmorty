@@ -9,15 +9,15 @@ import Foundation
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    
+
     var childCoordinators = [Coordinator]()
-    
+
     weak var finishDelegate: CoordinatorFinishDelegate?
-    
+
     var navigationController: UINavigationController
-    
+
     var dependencies: IDependencies
-    
+
     required init(_ navigationController: UINavigationController, dependencies: IDependencies) {
         self.navigationController = navigationController
         navigationController.setNavigationBarHidden(true, animated: true)
@@ -26,7 +26,7 @@ final class AppCoordinator: Coordinator {
     func start() {
         showLaunchViewController()
     }
-    
+
     func showLaunchViewController() {
         let launchViewController = LaunchAssembly.configure(dependencies)
         navigationController.show(launchViewController, sender: self)
@@ -34,11 +34,11 @@ final class AppCoordinator: Coordinator {
             self?.showMain()
         }
     }
-    
+
     func showMain() {
         let mainCoordinator = MainCoordinator(navigationController, dependencies: dependencies)
         mainCoordinator.start()
         childCoordinators.append(mainCoordinator)
     }
-    
+
 }

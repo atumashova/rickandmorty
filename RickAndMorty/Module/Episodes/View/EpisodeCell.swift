@@ -8,17 +8,23 @@
 import Foundation
 import UIKit
 
+protocol EpisodeCellDelegate: AnyObject {
+    func updateFavorite(isSelected: Bool, episode: EpisodeModel)
+}
+
 final class EpisodeCell: UICollectionViewCell {
+    weak var delegate: EpisodeCellDelegate?
+    private var episode: EpisodeModel?
     static let reuseIdentifier = "EpisodeCell"
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     private lazy var backView: UIView = {
         let view = UIView()
         view.layer.masksToBounds = false
@@ -30,7 +36,7 @@ final class EpisodeCell: UICollectionViewCell {
         view.backgroundColor = .white
         return view
     }()
-    
+
     private lazy var episodeView: UIView = {
         let view = UIView()
         view.layer.cornerRadius = 16
@@ -38,13 +44,13 @@ final class EpisodeCell: UICollectionViewCell {
         view.backgroundColor = UIColor.theme.secondBackground
         return view
     }()
-    
+
     private lazy var characterView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor.clear
         return view
     }()
-    
+
     private lazy var characterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -52,14 +58,14 @@ final class EpisodeCell: UICollectionViewCell {
         imageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         return imageView
     }()
-    
+
     private lazy var episodeImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .center
         imageView.image = UIImage(named: Images.episodeIcon)
         return imageView
     }()
-    
+
     private lazy var episodeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.theme.episode
@@ -67,7 +73,7 @@ final class EpisodeCell: UICollectionViewCell {
         label.textAlignment = .left
         return label
     }()
-    
+
     private lazy var characterLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.theme.character
@@ -75,26 +81,33 @@ final class EpisodeCell: UICollectionViewCell {
         label.textAlignment = .left
         return label
     }()
-    
+
     private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: Images.favoriteIcon), for: .normal)
         button.setImage(UIImage(named: Images.favoriteSelectedIcon), for: .selected)
         return button
     }()
-    
-    func configure(episode: EpisodeModel) {
+
+    func configure(episode: EpisodeModel, isFavorite: Bool) {
+        self.episode = episode
+        favoriteButton.isSelected = isFavorite
         episodeLabel.text = "\(episode.name) | \(episode.episode)"
     }
+
     func configure(character: CharacterModel) {
         characterLabel.text = character.name
-        characterImageView.downloaded(from: character.image, contentMode: .scaleAspectFill)
+        characterImageView.loadImage(from: character.image, contentMode: .scaleAspectFill)
     }
-    
+
     @objc func tapFavoriteButton(sender: UIButton) {
-        sender.isSelected = !sender.isSelected
+        guard let episode = self.episode else {return}
+        delegate?.updateFavorite(isSelected: sender.isSelected, episode: episode)
+        sender.zoomIn(duration: 0.5) {
+            sender.isSelected = !sender.isSelected
+        }
     }
-    
+
     private func setupUI() {
         favoriteButton.addTarget(self, action: #selector(tapFavoriteButton), for: .touchUpInside)
         contentView.addSubview(backView)
@@ -105,7 +118,7 @@ final class EpisodeCell: UICollectionViewCell {
             backView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             backView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
-        
+
         let stackView = UIStackView(arrangedSubviews: [characterImageView, characterView, episodeView])
         characterView.addSubview(characterLabel)
         characterLabel.translatesAutoresizingMaskIntoConstraints = false
